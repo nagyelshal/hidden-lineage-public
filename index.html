@@ -227,6 +227,209 @@
             margin-bottom: 10px;
         }
         
+        /* NEW STYLES FOR K-VALUE COMPARISON SECTION */
+        .comparison-section {
+            background: rgba(255, 255, 255, 0.95);
+            color: #333;
+            border-radius: 25px;
+            padding: 40px;
+            margin: 60px 0;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 1s ease 1.2s both;
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            color: #2c3e50;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 15px;
+        }
+        
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+        
+        .analysis-card {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            border-left: 6px solid;
+            transition: all 0.3s ease;
+            height: 100%;
+        }
+        
+        .analysis-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .card-23andme-modern {
+            border-left-color: #4CAF50;
+        }
+        
+        .card-23andme-ancient {
+            border-left-color: #FF9800;
+        }
+        
+        .card-hidden-lineage {
+            border-left-color: #9C27B0;
+        }
+        
+        .card-title {
+            font-size: 1.4em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .card-subtitle {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+        }
+        
+        .feature-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            align-items: center;
+        }
+        
+        .feature-list li::before {
+            content: '🔹';
+            margin-right: 10px;
+        }
+        
+        .k-value {
+            background: #e3f2fd;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-weight: bold;
+            color: #1565c0;
+            font-size: 0.9em;
+        }
+        
+        .example-results {
+            background: #fff3e0;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid #ff9800;
+        }
+        
+        .timeline-visual {
+            background: linear-gradient(90deg, #3498db, #9b59b6, #e74c3c);
+            border-radius: 15px;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin: 40px 0;
+        }
+        
+        .timeline-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .timeline-point {
+            background: rgba(255,255,255,0.9);
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .vs-section {
+            background: #f1f8e9;
+            padding: 25px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+        
+        .vs-title {
+            text-align: center;
+            font-size: 1.5em;
+            color: #2e7d32;
+            margin-bottom: 20px;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .comparison-table th,
+        .comparison-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .comparison-table th {
+            background-color: #e8f5e8;
+            font-weight: bold;
+        }
+        
+        .highlight {
+            background-color: #fff9c4;
+            font-weight: bold;
+        }
+        
+        .cookie-analogy {
+            background: #e8f5e8;
+            padding: 25px;
+            border-radius: 15px;
+            margin-top: 30px;
+        }
+        
+        .cookie-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .cookie-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .cookie-card.cookie-highlight {
+            border: 2px solid #4CAF50;
+        }
+        
+        .bottom-note {
+            text-align: center;
+            margin-top: 40px;
+            padding: 25px;
+            background: #f0f8ff;
+            border-radius: 15px;
+            border: 2px solid #667eea;
+        }
+        
         .floating-dna {
             position: fixed;
             font-size: 2rem;
@@ -252,6 +455,11 @@
             50% { transform: translateY(-20px) rotate(180deg); }
         }
         
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
         @media (max-width: 768px) {
             .hero-title {
                 font-size: 2.5rem;
@@ -261,17 +469,37 @@
                 font-size: 1.1rem;
             }
             
-            .preview-grid {
+            .preview-grid,
+            .comparison-grid,
+            .cookie-grid {
                 grid-template-columns: 1fr;
             }
             
             .facts-grid {
                 grid-template-columns: 1fr;
             }
+            
+            .timeline-content {
+                flex-direction: column;
+            }
+            
+            .comparison-section {
+                padding: 25px;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- REMOVE THIS BANNER FOR FINAL VERSION -->
+    <div style="background: linear-gradient(45deg, #e74c3c, #c0392b); color: white; text-align: center; padding: 15px; font-weight: bold; position: sticky; top: 0; z-index: 9999; box-shadow: 0 2px 10px rgba(0,0,0,0.3);">
+        🔬 ANALYSIS IN PROGRESS - K=7-9 NEAR COMPLETION - HIGHER RESOLUTION PROCESSING 🔬
+    </div>
+    <!-- END BANNER TO REMOVE -->
+
     <!-- Floating DNA elements -->
     <div class="floating-dna" style="top: 10%; left: 5%;">🧬</div>
     <div class="floating-dna" style="top: 20%; right: 10%; animation-delay: -2s;">🧬</div>
@@ -281,7 +509,7 @@
     <!-- Hero Section -->
     <div class="hero-section">
         <h1 class="hero-title">🧬 Hidden Lineage</h1>
-        <p class="hero-subtitle">Discover the incredible story written in your DNA</p>
+        <p class="hero-subtitle">23andMe Was Just the Beginning. This Is the Real Ancestry Story.</p>
         <a href="technical-methodology.html" class="cta-button" style="margin-right: 20px;">
             🔬 Technical Methodology
         </a>
@@ -291,29 +519,214 @@
     </div>
 
     <div class="preview-section">
+        <!-- NEW K-VALUE COMPARISON SECTION -->
+        <div class="comparison-section">
+            <h2 class="section-title">📊 Understanding Different Ancestry Analysis Methods</h2>
+            
+            <div class="comparison-grid">
+                <!-- 23andMe Modern -->
+                <div class="analysis-card card-23andme-modern">
+                    <div class="card-title">🌍 23andMe Modern</div>
+                    <div class="card-subtitle">"Where in the world does your DNA look most similar TODAY?"</div>
+                    
+                    <ul class="feature-list">
+                        <li><strong>K Value:</strong> <span class="k-value">K=20-50+</span></li>
+                        <li><strong>Reference:</strong> Living people from specific countries</li>
+                        <li><strong>Time Frame:</strong> Recent (last 500 years)</li>
+                        <li><strong>Resolution:</strong> Very high - specific countries</li>
+                        <li><strong>Purpose:</strong> Match to modern populations</li>
+                    </ul>
+                    
+                    <div class="example-results">
+                        <strong>Example Results:</strong><br>
+                        • 25% Lebanese<br>
+                        • 18% Egyptian<br>
+                        • 12% Turkish<br>
+                        • 8% Italian<br>
+                        • 5% Scandinavian
+                    </div>
+                </div>
+                
+                <!-- 23andMe Ancient -->
+                <div class="analysis-card card-23andme-ancient">
+                    <div class="card-title">🏺 23andMe Ancient</div>
+                    <div class="card-subtitle">"What ancient groups contributed thousands of years ago?"</div>
+                    
+                    <ul class="feature-list">
+                        <li><strong>K Value:</strong> <span class="k-value">K=3-8</span></li>
+                        <li><strong>Reference:</strong> Ancient skeletons & broad groups</li>
+                        <li><strong>Time Frame:</strong> Deep (2,000-10,000+ years)</li>
+                        <li><strong>Resolution:</strong> Low - very broad categories</li>
+                        <li><strong>Purpose:</strong> General migration stories</li>
+                    </ul>
+                    
+                    <div class="example-results">
+                        <strong>Example Results:</strong><br>
+                        • "Anatolian Farmers"<br>
+                        • "Steppe Pastoralists"<br>
+                        • "Western Hunter-Gatherers"<br>
+                        • Very vague percentages
+                    </div>
+                </div>
+                
+                <!-- Hidden Lineage -->
+                <div class="analysis-card card-hidden-lineage">
+                    <div class="card-title">🔬 Hidden Lineage</div>
+                    <div class="card-subtitle">"Bridge ancient and modern with scientific precision"</div>
+                    
+                    <ul class="feature-list">
+                        <li><strong>K Value:</strong> <span class="k-value">K=3 to K=20</span></li>
+                        <li><strong>Reference:</strong> Both ancient + modern samples</li>
+                        <li><strong>Time Frame:</strong> Full spectrum (10,000 years to today)</li>
+                        <li><strong>Resolution:</strong> Scalable - from broad to specific</li>
+                        <li><strong>Purpose:</strong> Scientific discovery & education</li>
+                    </ul>
+                    
+                    <div class="example-results">
+                        <strong>Your Preliminary Results (K=5):</strong><br>
+                        • 75.7% Neolithic Iranian<br>
+                        • 22.0% Caucasus/Armenian<br>
+                        • 2.0% Mixed Modern<br>
+                        • 0.3% Ancient Egyptian
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline Visual -->
+            <div class="timeline-visual">
+                <h3>🕰️ Time Depth Comparison</h3>
+                <div class="timeline-content">
+                    <div class="timeline-point">
+                        <strong>23andMe Modern</strong><br>
+                        Last 500 years<br>
+                        🏘️ Recent ancestry
+                    </div>
+                    <div class="timeline-point">
+                        <strong>Hidden Lineage</strong><br>
+                        500 - 10,000+ years<br>
+                        🌉 Bridge analysis
+                    </div>
+                    <div class="timeline-point">
+                        <strong>23andMe Ancient</strong><br>
+                        2,000 - 10,000+ years<br>
+                        🏺 Deep ancestry
+                    </div>
+                </div>
+            </div>
+            
+            <!-- VS Section -->
+            <div class="vs-section">
+                <div class="vs-title">📊 Key Differences at a Glance</div>
+                
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>23andMe Modern</th>
+                            <th>23andMe Ancient</th>
+                            <th class="highlight">Hidden Lineage</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>K Value Range</strong></td>
+                            <td>K=20-50+ (very high)</td>
+                            <td>K=3-8 (very low)</td>
+                            <td class="highlight">K=3-20 (flexible)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Resolution</strong></td>
+                            <td>Country-level precision</td>
+                            <td>Continental groups</td>
+                            <td class="highlight">Specific ancient populations</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time Awareness</strong></td>
+                            <td>Recent only</td>
+                            <td>Ancient only</td>
+                            <td class="highlight">Full time spectrum</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Database Size</strong></td>
+                            <td>Millions of customers</td>
+                            <td>Hundreds of ancient samples</td>
+                            <td class="highlight">Curated ancient + modern</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Scientific Method</strong></td>
+                            <td>Supervised learning</td>
+                            <td>Basic clustering</td>
+                            <td class="highlight">ADMIXTURE + PCA</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transparency</strong></td>
+                            <td>Black box</td>
+                            <td>Limited details</td>
+                            <td class="highlight">Full methodology shown</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <!-- Cookie Analogy -->
+            <div class="cookie-analogy">
+                <h3>🍪 The Cookie Analogy (Simple Version)</h3>
+                <div class="cookie-grid">
+                    <div class="cookie-card">
+                        <strong>23andMe Modern (K=30)</strong><br>
+                        "Your cookie has 30 ingredients: 
+                        wheat flour (25%), 
+                        cane sugar (20%), 
+                        Belgian chocolate (15%), 
+                        Madagascar vanilla (10%)..."
+                    </div>
+                    <div class="cookie-card">
+                        <strong>23andMe Ancient (K=3)</strong><br>
+                        "Your cookie has 3 ingredients: 
+                        flour (70%), 
+                        sweet stuff (20%), 
+                        extras (10%)"
+                    </div>
+                    <div class="cookie-card cookie-highlight">
+                        <strong>Hidden Lineage (K=3→K=20)</strong><br>
+                        "Let's start with 3 ingredients, then zoom in to see all 20. 
+                        Now we can trace when each ingredient was added to your family recipe!"
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Bottom Note -->
+            <div class="bottom-note">
+                <h3>🎯 The Hidden Lineage Advantage</h3>
+                <p><strong>We don't compete with 23andMe — we complement it.</strong><br>
+                23andMe tells you about recent ancestry and gives general ancient context.<br>
+                <span style="color: #9C27B0; font-weight: bold;">Hidden Lineage bridges the gap with scientific precision, showing exactly which ancient populations contributed to your DNA and when.</span></p>
+            </div>
+        </div>
+
         <!-- Mind-Blowing Facts Teaser -->
         <div class="mind-blowing-facts">
             <h2 class="facts-header">🤯 Your DNA Will Blow Your Mind!</h2>
             <div class="facts-grid">
                 <div class="fact-item">
-                    <span class="fact-emoji">👑</span>
-                    <strong>You're descended from ancient royalty!</strong>
-                    <p>Direct genetic lines to Bronze Age kings and rulers</p>
+                    <span class="fact-emoji">🏺</span>
+                    <strong>You're Ancient Iranian!</strong>
+                    <p>75.7% ancient Iranian farmers and Bronze Age traders</p>
                 </div>
                 <div class="fact-item">
-                    <span class="fact-emoji">🦸‍♂️</span>
-                    <strong>You have Ice Age superpowers!</strong>
-                    <p>Neanderthal DNA gives you enhanced abilities</p>
+                    <span class="fact-emoji">🏔️</span>
+                    <strong>Caucasus Mountain Heritage!</strong>
+                    <p>22% Armenian/Georgian mountain populations</p>
                 </div>
                 <div class="fact-item">
-                    <span class="fact-emoji">⚔️</span>
-                    <strong>You survived everything!</strong>
-                    <p>1 in 400 trillion odds of existing</p>
+                    <span class="fact-emoji">🧬</span>
+                    <strong>10,000 Years of History!</strong>
+                    <p>From Neolithic farmers to Bronze Age civilizations</p>
                 </div>
                 <div class="fact-item">
-                    <span class="fact-emoji">🗿</span>
-                    <strong>You built Stonehenge!</strong>
-                    <p>Connected to ancient monument builders</p>
+                    <span class="fact-emoji">🔍</span>
+                    <strong>NOT What 23andMe Found!</strong>
+                    <p>Deep ancient structure they completely missed</p>
                 </div>
             </div>
             <a href="fun-facts.html" class="amazing-button">
@@ -373,20 +786,20 @@
                     <div>Years Traced</div>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">2,847</span>
-                    <div>Reference Populations</div>
+                    <span class="stat-number">428</span>
+                    <div>Reference Samples</div>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">99.7%</span>
                     <div>Accuracy Rate</div>
                 </div>
                 <div class="stat-item">
-                    <span class="stat-number">1,247</span>
-                    <div>Ancient Matches</div>
+                    <span class="stat-number">75.7%</span>
+                    <div>Ancient Iranian</div>
                 </div>
                 <div class="stat-item">
                     <span class="stat-number">10K</span>
-                    <div>Generations</div>
+                    <div>Years Deep</div>
                 </div>
             </div>
         </div>
@@ -404,11 +817,11 @@
             if (navigator.share) {
                 navigator.share({
                     title: 'My DNA Story is Incredible!',
-                    text: 'I just discovered I\'m descended from ancient royalty, have Ice Age superpowers, and survived 200,000 years of human history! My DNA results are mind-blowing! 🧬👑',
+                    text: 'I thought I was Egyptian-Lebanese, but I just discovered I\'m 75.7% ancient Iranian! My DNA results show connections to 10,000-year-old civilizations! 🧬🏺',
                     url: window.location.href
                 });
             } else {
-                const text = "I just discovered I'm descended from ancient royalty, have Ice Age superpowers, and survived 200,000 years of human history! Check out Hidden Lineage: " + window.location.href;
+                const text = "I thought I was Egyptian-Lebanese, but I just discovered I'm 75.7% ancient Iranian! Check out Hidden Lineage: " + window.location.href;
                 navigator.clipboard.writeText(text);
                 alert('Amazing DNA discovery shared! 🧬');
             }
@@ -447,6 +860,26 @@
             });
             
             stats.forEach(stat => observer.observe(stat));
+            
+            // Add smooth scrolling for internal links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    document.querySelector(this.getAttribute('href')).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                });
+            });
+            
+            // Add click tracking for comparison cards
+            document.querySelectorAll('.analysis-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.98)';
+                    setTimeout(() => {
+                        this.style.transform = 'translateY(-5px)';
+                    }, 150);
+                });
+            });
         });
     </script>
 </body>
