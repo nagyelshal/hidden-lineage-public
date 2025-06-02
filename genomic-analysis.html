@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Genomic Analysis - Hidden Lineage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .haplogroup-card {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            align-items: center;
+        }
+        .haplogroup-visual {
+            text-align: center;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+        .haplogroup-tree {
+            font-family: 'Courier New', monospace;
+            font-size: 1.1rem;
+            line-height: 1.6;
+            text-align: left;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        .dna-strand {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+            gap: 5px;
+            margin: 20px 0;
+        }
+        .base-pair {
+            height: 40px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: white;
+        }
+        .base-a { background: #e74c3c; }
+        .base-t { background: #3498db; }
+        .base-g { background: #f39c12; }
+        .base-c { background: #27ae60; }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .stat-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #f39c12;
+            display: block;
+        }
+        .mutation-highlight {
+            background: linear-gradient(135deg, rgba(231, 76, 60, 0.3), rgba(192, 57, 43, 0.3));
+            border-left: 4px solid #e74c3c;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 0 10px 10px 0;
+        }
+        .rare-variant {
+            background: linear-gradient(135deg, rgba(142, 68, 173, 0.3), rgba(155, 89, 182, 0.3));
+            border: 2px solid #9b59b6;
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        @media (max-width: 768px) {
+            .haplogroup-card {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="results.html" class="back-button">← Back to Results</a>
+            <h1>🧬 Genomic Analysis Deep Dive</h1>
+            <p>Explore the detailed genetic markers that define your ancestry</p>
+        </div>
+
+        <!-- Haplogroups Section -->
+        <div class="section">
+            <h2 style="color: #3498db; margin-bottom: 30px;">🧭 Your Haplogroups - Genetic Surnames</h2>
+            
+            <div class="haplogroup-card">
+                <div class="haplogroup-visual">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🚹</div>
+                    <h3>Paternal Line (Y-DNA)</h3>
+                    <div style="font-size: 2rem; color: #3498db; font-weight: bold;">R1a1a1</div>
+                    <p>The "Slavic Warrior" lineage</p>
+                </div>
+                <div>
+                    <h4>Your Paternal Journey:</h4>
+                    <div class="haplogroup-tree">
+A (Africa, 275,000 years ago)
+└── BT (Out of Africa, 70,000 years ago)
+    └── CT (Asia, 65,000 years ago)
+        └── CF (45,000 years ago)
+            └── F (40,000 years ago)
+                └── P (35,000 years ago)
+                    └── R (25,000 years ago)
+                        └── R1 (Siberia, 20,000 years ago)
+                            └── R1a (15,000 years ago)
+                                └── R1a1a1 <-- YOU ARE HERE
+                    </div>
+                    <div class="rare-variant">
+                        <strong>🌟 Rare Variant Alert!</strong><br>
+                        You carry the M458 mutation - found in only 8% of European males. This marks you as descended from early Slavic tribes who spread across Eastern Europe 4,000 years ago!
+                    </div>
+                </div>
+            </div>
+
+            <div class="haplogroup-card" style="margin-top: 40px;">
+                <div>
+                    <h4>Your Maternal Journey:</h4>
+                    <div class="haplogroup-tree">
+L (Africa, 200,000 years ago)
+└── L3 (Out of Africa, 70,000 years ago)
+    └── N (Asia, 65,000 years ago)
+        └── R (50,000 years ago)
+            └── HV (Middle East, 35,000 years ago)
+                └── H (Europe, 25,000 years ago)
+                    └── H1 (Western Europe, 15,000 years ago)
+                        └── H1a1 <-- YOU ARE HERE
+                    </div>
+                    <div class="mutation-highlight">
+                        <strong>Celtic Connection:</strong> Your H1a1 lineage is strongly associated with Celtic populations. You likely have ancestors among the ancient Celts who built Stonehenge and dominated Iron Age Europe!
+                    </div>
+                </div>
+                <div class="haplogroup-visual">
+                    <div style="font-size: 4rem; margin-bottom: 20px;">🚺</div>
+                    <h3>Maternal Line (mtDNA)</h3>
+                    <div style="font-size: 2rem; color: #e74c3c; font-weight: bold;">H1a1</div>
+                    <p>The "Celtic Matriarch" lineage</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- DNA Composition -->
+        <div class="section">
+            <h2 style="color: #f39c12; margin-bottom: 30px;">🔬 Your DNA Composition</h2>
+            
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">3.2%</span>
+                    <strong>Neanderthal DNA</strong>
+                    <p>Above average - you're more Neanderthal than 68% of people!</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">0.8%</span>
+                    <strong>Denisovan DNA</strong>
+                    <p>Rare ancient human DNA from Siberian cousins</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">847,293</span>
+                    <strong>SNPs Analyzed</strong>
+                    <p>Genetic markers examined in your DNA</p>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">23</span>
+                    <strong>Rare Variants</strong>
+                    <p>Unique genetic signatures found in <1% of people</p>
+                </div>
+            </div>
+
+            <h3>Sample DNA Sequence Analysis:</h3>
+            <p>Here's a small section of your actual genetic code:</p>
+            <div class="dna-strand">
+                <div class="base-pair base-a">A</div>
+                <div class="base-pair base-t">T</div>
+                <div class="base-pair base-g">G</div>
+                <div class="base-pair base-c">C</div>
+                <div class="base-pair base-g">G</div>
+                <div class="base-pair base-a">A</div>
+                <div class="base-pair base-t">T</div>
+                <div class="base-pair base-c">C</div>
+                <div class="base-pair base-g">G</div>
+                <div class="base-pair base-t">T</div>
+                <div class="base-pair base-a">A</div>
+                <div class="base-pair base-c">C</div>
+            </div>
+            <p><em>This sequence shows a Neanderthal variant on chromosome 12 that affects your immune response to cold viruses!</em></p>
+        </div>
+
+        <!-- Unique Genetic Signatures -->
+        <div class="section">
+            <h2 style="color: #9b59b6; margin-bottom: 30px;">✨ Your Unique Genetic Signatures</h2>
+            
+            <div class="rare-variant">
+                <h3>🦠 Ancient Pathogen Resistance</h3>
+                <p><strong>Gene:</strong> TLR4 (Toll-like receptor 4)</p>
+                <p><strong>Your Variant:</strong> rs4986790 (A/G)</p>
+                <p><strong>Superpower:</strong> Enhanced resistance to bacterial infections - this mutation likely helped your ancestors survive medieval plagues!</p>
+            </div>
+
+            <div class="rare-variant">
+                <h3>🧊 Ice Age Adaptation</h3>
+                <p><strong>Gene:</strong> UCP1 (Uncoupling protein 1)</p>
+                <p><strong>Your Variant:</strong> rs1800592 (G/A)</p>
+                <p><strong>Superpower:</strong> Superior brown fat activation - you literally generate more body heat than most people!</p>
+            </div>
+
+            <div class="rare-variant">
+                <h3>💪 Athletic Performance</h3>
+                <p><strong>Gene:</strong> ACTN3 (Alpha-actinin-3)</p>
+                <p><strong>Your Variant:</strong> rs1815739 (C/T)</p>
+                <p><strong>Superpower:</strong> Enhanced fast-twitch muscle fibers - you have the "sprinter gene" for explosive power!</p>
+            </div>
+
+            <div class="rare-variant">
+                <h3>🍷 Alcohol Processing</h3>
+                <p><strong>Gene:</strong> ADH1B (Alcohol dehydrogenase)</p>
+                <p><strong>Your Variant:</strong> rs1229984 (A/G)</p>
+                <p><strong>Trait:</strong> Slow alcohol metabolism - you likely have strong reactions to alcohol, which may have protected your ancestors from alcoholism.</p>
+            </div>
+        </div>
+
+        <!-- Deep Ancestry Markers -->
+        <div class="section">
+            <h2 style="color: #27ae60; margin-bottom: 30px;">🏺 Deep Ancestry Markers</h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px;">
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
+                    <h4>🌾 Neolithic Farmer (85% match)</h4>
+                    <p>Strong genetic connection to early European farmers from Turkey and the Fertile Crescent (8,000 years ago)</p>
+                    <div style="background: #27ae60; height: 10px; border-radius: 5px; width: 85%;"></div>
+                </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
+                    <h4>🐎 Yamnaya Steppe (62% match)</h4>
+                    <p>Connected to Bronze Age horse-riding warriors from the Russian steppes (5,000 years ago)</p>
+                    <div style="background: #f39c12; height: 10px; border-radius: 5px; width: 62%;"></div>
+                </div>
+                
+                <div style="background: rgba(255, 255, 255, 0.1); padding: 20px; border-radius: 15px;">
+                    <h4>🏹 Western Hunter-Gatherers (23% match)</h4>
+                    <p>Ancient European hunter-gatherers who survived the Ice Age (15,000 years ago)</p>
+                    <div style="background: #e74c3c; height: 10px; border-radius: 5px; width: 23%;"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Sharing Button -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button onclick="shareResults()" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, #f39c12, #e67e22); border: none; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            📱
+        </button>
+    </div>
+
+    <script>
+        function shareResults() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My DNA Has Superpowers!',
+                    text: 'I discovered I have ancient pathogen resistance, Ice Age heating, and the sprinter gene! Plus I\'m more Neanderthal than 68% of people! 🧬💪',
+                    url: window.location.href
+                });
+            } else {
+                const text = "I discovered my DNA has superpowers - ancient pathogen resistance, Ice Age heating, and the sprinter gene! Check out my genomic analysis: " + window.location.href;
+                navigator.clipboard.writeText(text);
+                alert('Genomic superpowers shared! 🧬');
+            }
+        }
+    </script>
+</body>
+</html>

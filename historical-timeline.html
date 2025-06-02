@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Historical Timeline - Hidden Lineage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background: linear-gradient(180deg, #f39c12, #e67e22);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+            margin-bottom: 30px;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+            border: 4px solid white;
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+        .left {
+            left: 0;
+        }
+        .right {
+            left: 50%;
+        }
+        .right::after {
+            left: -16px;
+        }
+        .timeline-content {
+            padding: 20px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            position: relative;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .timeline-date {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #f39c12;
+            margin-bottom: 10px;
+        }
+        .timeline-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+        .migration-path {
+            background: linear-gradient(135deg, rgba(52, 152, 219, 0.2), rgba(41, 128, 185, 0.2));
+            border-radius: 25px;
+            padding: 30px;
+            margin: 40px 0;
+            border: 2px solid #3498db;
+        }
+        .path-step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .path-arrow {
+            font-size: 2rem;
+            margin: 0 20px;
+            color: #3498db;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        @media screen and (max-width: 600px) {
+            .timeline::after {
+                left: 31px;
+            }
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid white;
+                border-width: 10px 10px 10px 0;
+                border-color: transparent white transparent transparent;
+            }
+            .left::after, .right::after {
+                left: 15px;
+            }
+            .right {
+                left: 0%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="results.html" class="back-button">← Back to Results</a>
+            <h1>🕰️ Your Historical Timeline</h1>
+            <p>Journey through time and see where your ancestors lived and moved</p>
+        </div>
+
+        <div class="migration-path">
+            <h2 style="color: #3498db; text-align: center; margin-bottom: 30px;">🗺️ Your Ancestral Migration Path</h2>
+            <div class="path-step">
+                <div>
+                    <strong>🏠 Africa (200,000 years ago)</strong><br>
+                    Your journey begins with early humans in Africa
+                </div>
+                <div class="path-arrow">→</div>
+                <div>
+                    <strong>🌍 Out of Africa (70,000 years ago)</strong><br>
+                    Your ancestors joined the great migration
+                </div>
+            </div>
+            <div class="path-step">
+                <div>
+                    <strong>🏔️ Caucasus Mountains (45,000 years ago)</strong><br>
+                    Settled in the crossroads between continents
+                </div>
+                <div class="path-arrow">→</div>
+                <div>
+                    <strong>🌾 Fertile Crescent (12,000 years ago)</strong><br>
+                    Your ancestors became early farmers
+                </div>
+            </div>
+            <div class="path-step">
+                <div>
+                    <strong>🏰 Bronze Age Europe (4,000 years ago)</strong><br>
+                    Spread across Europe during metal age
+                </div>
+                <div class="path-arrow">→</div>
+                <div>
+                    <strong>🏡 Modern Settlement</strong><br>
+                    Your family's current location
+                </div>
+            </div>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">200,000 BCE</div>
+                    <div class="timeline-title">🌍 Dawn of Humanity</div>
+                    <p>Your earliest ancestors emerge in Africa. Homo sapiens develops language, tools, and complex thinking.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">70,000 BCE</div>
+                    <div class="timeline-title">🚶‍♂️ The Great Migration</div>
+                    <p>Your ancestors leave Africa in small groups, beginning the epic journey that would populate the entire world.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">45,000 BCE</div>
+                    <div class="timeline-title">🗻 Caucasus Settlement</div>
+                    <p>Your lineage settles in the Caucasus Mountains region, adapting to new climates and developing unique genetic traits.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">40,000 BCE</div>
+                    <div class="timeline-title">🎨 Cultural Revolution</div>
+                    <p>Your ancestors create the first cave paintings, develop sophisticated tools, and begin complex social structures.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">12,000 BCE</div>
+                    <div class="timeline-title">🌾 Agricultural Revolution</div>
+                    <p>Your ancestors become some of the world's first farmers in the Fertile Crescent, domesticating wheat and barley.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">7,000 BCE</div>
+                    <div class="timeline-title">🏘️ First Cities</div>
+                    <p>Your lineage helps build some of humanity's first permanent settlements and proto-cities.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">4,000 BCE</div>
+                    <div class="timeline-title">⚒️ Bronze Age Begins</div>
+                    <p>Your ancestors master metalworking and spread across Europe, bringing new technologies and cultures.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">2,000 BCE</div>
+                    <div class="timeline-title">👑 Rise of Empires</div>
+                    <p>Your lineage witnesses and participates in the rise of great civilizations and empires across Europe and Asia.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <div class="timeline-date">1,000 CE</div>
+                    <div class="timeline-title">🏰 Medieval Period</div>
+                    <p>Your ancestors navigate the medieval world, surviving plagues, wars, and social upheavals.</p>
+                </div>
+            </div>
+
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <div class="timeline-date">Today</div>
+                    <div class="timeline-title">🧬 DNA Discovery</div>
+                    <p>All of this incredible history lives on in your DNA, connecting you to every chapter of human civilization!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Sharing Button -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button onclick="shareResults()" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, #f39c12, #e67e22); border: none; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            📱
+        </button>
+    </div>
+
+    <script>
+        function shareResults() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'My Incredible Ancestral Timeline!',
+                    text: 'I traced my DNA back 200,000 years - from Africa to the Bronze Age! My ancestors were farmers, warriors, and survivors! 🧬🕰️',
+                    url: window.location.href
+                });
+            } else {
+                const text = "I traced my DNA back 200,000 years - from Africa to the Bronze Age! Check out my incredible ancestral timeline: " + window.location.href;
+                navigator.clipboard.writeText(text);
+                alert('Amazing timeline shared! 🧬');
+            }
+        }
+    </script>
+</body>
+</html>

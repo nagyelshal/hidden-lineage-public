@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Statistical Validation - Hidden Lineage</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            min-height: 100vh;
+            color: white;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .back-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            margin-bottom: 20px;
+            transition: transform 0.2s;
+        }
+        .back-button:hover {
+            transform: translateY(-2px);
+        }
+        .section {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 25px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .confidence-meter {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .confidence-bar {
+            height: 30px;
+            background: linear-gradient(90deg, #e74c3c 0%, #f39c12 50%, #27ae60 100%);
+            border-radius: 15px;
+            position: relative;
+            margin: 10px 0;
+        }
+        .confidence-indicator {
+            position: absolute;
+            top: -5px;
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            border: 3px solid #2c3e50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+        .methodology-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .method-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 4px solid #3498db;
+        }
+        .accuracy-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .accuracy-table th,
+        .accuracy-table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .accuracy-table th {
+            background: rgba(0, 0, 0, 0.2);
+            font-weight: bold;
+        }
+        .high-confidence {
+            background: rgba(39, 174, 96, 0.2);
+            border-left: 4px solid #27ae60;
+        }
+        .medium-confidence {
+            background: rgba(243, 156, 18, 0.2);
+            border-left: 4px solid #f39c12;
+        }
+        .comparison-chart {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        .comparison-item {
+            text-align: center;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        .score {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #3498db;
+        }
+        .technical-details {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="results.html" class="back-button">← Back to Results</a>
+            <h1>📊 Statistical Validation & Methodology</h1>
+            <p>Understanding the science and accuracy behind your results</p>
+        </div>
+
+        <!-- Confidence Levels -->
+        <div class="section">
+            <h2 style="color: #3498db; margin-bottom: 30px;">🎯 Confidence Levels for Your Results</h2>
+            
+            <div class="confidence-meter">
+                <h4>Continental Ancestry (99.7% confidence)</h4>
+                <div class="confidence-bar">
+                    <div class="confidence-indicator" style="left: 95%;">99</div>
+                </div>
+                <p>Your major continental ancestry assignments are extremely reliable.</p>
+            </div>
+
+            <div class="confidence-meter">
+                <h4>Regional Ancestry (94.2% confidence)</h4>
+                <div class="confidence-bar">
+                    <div class="confidence-indicator" style="left: 85%;">94</div>
+                </div>
+                <p>Country-level ancestry assignments are highly accurate for recent ancestry.</p>
+            </div>
+
+            <div class="confidence-meter">
+                <h4>Ancient DNA Matches (87.5% confidence)</h4>
+                <div class="confidence-bar">
+                    <div class="confidence-indicator" style="left: 75%;">88</div>
+                </div>
+                <p>Matches to ancient populations are reliable but become less precise with age.</p>
+            </div>
+
+            <div class="confidence-meter">
+                <h4>Deep Ancestry Timeline (73.1% confidence)</h4>
+                <div class="confidence-bar">
+                    <div class="confidence-indicator" style="left: 60%;">73</div>
+                </div>
+                <p>Very ancient migrations (>10,000 years) have broader uncertainty ranges.</p>
+            </div>
+        </div>
+
+        <!-- Methodology -->
+        <div class="section">
+            <h2 style="color: #f39c12; margin-bottom: 30px;">🔬 Our Methodology</h2>
+            
+            <div class="methodology-grid">
+                <div class="method-card">
+                    <h4>🧬 SNP Analysis</h4>
+                    <p><strong>847,293 genetic markers</strong> analyzed across all 22 autosomal chromosomes plus X and Y chromosomes.</p>
+                    <div class="technical-details">
+Algorithm: Admixture v1.3.0
+Reference: 1000 Genomes Project Phase 3
+Coverage: 99.2% of target SNPs
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <h4>📚 Reference Populations</h4>
+                    <p><strong>2,847 reference populations</strong> from modern and ancient DNA databases worldwide.</p>
+                    <div class="technical-details">
+Modern: 1000G, HGDP, UK Biobank
+Ancient: Reich Lab, Mathieson 2018
+Total samples: 47,892 individuals
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <h4>🎲 Statistical Methods</h4>
+                    <p><strong>Bayesian inference</strong> with Monte Carlo sampling for ancestry proportions.</p>
+                    <div class="technical-details">
+Iterations: 50,000 MCMC chains
+Burn-in: 10,000 iterations
+Convergence: Gelman-Rubin < 1.01
+                    </div>
+                </div>
+
+                <div class="method-card">
+                    <h4>⏰ Dating Methods</h4>
+                    <p><strong>IBD segment analysis</strong> combined with mutation rate clocks.</p>
+                    <div class="technical-details">
+IBD minimum: 7 cM segments
+Mutation rate: 1.25e-8 per bp per gen
+Generation time: 29 years average
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Accuracy Benchmarks -->
+        <div class="section">
+            <h2 style="color: #27ae60; margin-bottom: 30px;">📈 Accuracy Benchmarks</h2>
+            
+            <table class="accuracy-table">
+                <thead>
+                    <tr>
+                        <th>Analysis Type</th>
+                        <th>Accuracy Rate</th>
+                        <th>Sample Size</th>
+                        <th>Validation Method</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="high-confidence">
+                        <td>Continental Ancestry</td>
+                        <td>99.7%</td>
+                        <td>15,247 individuals</td>
+                        <td>Known genealogy validation</td>
+                    </tr>
+                    <tr class="high-confidence">
+                        <td>Recent Ancestry (5 generations)</td>
+                        <td>96.3%</td>
+                        <td>8,924 individuals</td>
+                        <td>Family tree comparison</td>
+                    </tr>
+                    <tr class="high-confidence">
+                        <td>Haplogroup Assignment</td>
+                        <td>99.1%</td>
+                        <td>12,156 individuals</td>
+                        <td>Sanger sequencing validation</td>
+                    </tr>
+                    <tr class="medium-confidence">
+                        <td>Ancient Population Matches</td>
+                        <td>87.2%</td>
+                        <td>2,341 ancient samples</td>
+                        <td>Archaeological context</td>
+                    </tr>
+                    <tr class="medium-confidence">
+                        <td>Migration Dating</td>
+                        <td>74.8%</td>
+                        <td>1,847 dated events</td>
+                        <td>Carbon dating correlation</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Industry Comparison -->
+        <div class="section">
+            <h2 style="color: #9b59b6; margin-bottom: 30px;">🏆 How We Compare</h2>
+            
+            <div class="comparison-chart">
+                <div class="comparison-item">
+                    <div class="score">847K</div>
+                    <h4>Hidden Lineage</h4>
+                    <p>SNPs analyzed</p>
+                </div>
+                <div class="comparison-item">
+                    <div class="score">665K</div>
+                    <h4>AncestryDNA</h4>
+                    <p>SNPs analyzed</p>
+                </div>
+                <div class="comparison-item">
+                    <div class="score">640K</div>
+                    <h4>23andMe</h4>
+                    <p>SNPs analyzed</p>
+                </div>
+                <div class="comparison-item">
+                    <div class="score">570K</div>
+                    <h4>MyHeritage</h4>
+                    <p>SNPs analyzed</p>
+                </div>
+            </div>
+
+            <h3>Key Advantages:</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 20px 0;">
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px;">
+                    <strong>✅ More Ancient DNA</strong><br>
+                    We include 40% more ancient reference populations than competitors
+                </div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px;">
+                    <strong>✅ Better Geographic Resolution</strong><br>
+                    Sub-regional accuracy down to historical counties and provinces
+                </div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px;">
+                    <strong>✅ Advanced Algorithms</strong><br>
+                    Latest machine learning methods from 2024 genetic research
+                </div>
+                <div style="background: rgba(39, 174, 96, 0.2); padding: 20px; border-radius: 10px;">
+                    <strong>✅ Deeper Time Depth</strong><br>
+                    Reliable ancestry estimates back to 200,000 years ago
+                </div>
+            </div>
+        </div>
+
+        <!-- Technical Specifications -->
+        <div class="section">
+            <h2 style="color: #e74c3c; margin-bottom: 30px;">⚙️ Technical Specifications</h2>
+            
+            <div class="technical-details">
+<strong>GENOTYPING ARRAY:</strong>
+- Illumina Global Screening Array v3.0
+- 847,293 autosomal SNPs + 26,341 X-chromosome + 12,743 Y-chromosome
+- 99.7% call rate threshold
+- Hardy-Weinberg equilibrium p > 1e-6
+
+<strong>QUALITY CONTROL:</strong>
+- Relatedness filtering: PI_HAT < 0.125
+- Population stratification: PC1-PC10 adjustment
+- Batch effect correction: ComBat algorithm
+- Missing data imputation: IMPUTE2 with 1000G reference
+
+<strong>ANCESTRY INFERENCE:</strong>
+- Algorithm: Supervised ADMIXTURE with cross-validation
+- K-fold validation: 10-fold cross-validation for optimal K
+- Convergence criteria: ΔLogLikelihood < 0.0001
+- Bootstrap resampling: 1000 iterations for confidence intervals
+
+<strong>ANCIENT DNA MATCHING:</strong>
+- f3 statistics for population affinity
+- f4 statistics for admixture testing
+- D-statistics for introgression detection
+- Coalescent simulations for demographic modeling
+
+<strong>HAPLOGROUP CALLING:</strong>
+- Y-chromosome: ISOGG 2024 nomenclature
+- mtDNA: PhyloTree Build 17
+- Minimum coverage: 10x for Y-SNPs, 20x for mtDNA
+- Manual review of all novel variants
+            </div>
+        </div>
+
+        <!-- Limitations & Disclaimers -->
+        <div class="section">
+            <h2 style="color: #f39c12; margin-bottom: 30px;">⚠️ Important Limitations</h2>
+            
+            <div style="background: rgba(243, 156, 18, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4>Geographic Bias</h4>
+                <p>Our reference panels are strongest for European and East Asian populations. African and Indigenous American ancestry may be less precisely resolved.</p>
+            </div>
+
+            <div style="background: rgba(243, 156, 18, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4>Recent Admixture</h4>
+                <p>Ancestry estimates represent averages across your genome. Individual chromosomal segments may show different patterns due to recent mixing.</p>
+            </div>
+
+            <div style="background: rgba(243, 156, 18, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4>Ancient Timeline Uncertainty</h4>
+                <p>Dates older than 10,000 years have large confidence intervals (±2,000-5,000 years) due to limited calibration points.</p>
+            </div>
+
+            <div style="background: rgba(231, 76, 60, 0.2); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                <h4>Not Medical Advice</h4>
+                <p>These results are for ancestry and genealogical research only. Do not use for medical decisions without consulting healthcare professionals.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Social Sharing Button -->
+    <div style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+        <button onclick="shareResults()" style="width: 60px; height: 60px; border-radius: 50%; background: linear-gradient(45deg, #f39c12, #e67e22); border: none; color: white; font-size: 1.5rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+            📱
+        </button>
+    </div>
+
+    <script>
+        function shareResults() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Science Behind My DNA Results!',
+                    text: 'My DNA was analyzed using 847K genetic markers with 99.7% accuracy! The science behind ancestry testing is incredible! 🧬📊',
+                    url: window.location.href
+                });
+            } else {
+                const text = "The science behind my DNA results is incredible - 847K genetic markers analyzed with 99.7% accuracy! Check out the methodology: " + window.location.href;
+                navigator.clipboard.writeText(text);
+                alert('Scientific methodology shared! 📊');
+            }
+        }
+    </script>
+</body>
+</html>
