@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hidden Lineage - Ancestry Visualizations</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+            color: #333;
+        }
+        
+        .header {
+            background: #2c5530;
+            color: white;
+            padding: 2rem;
+            text-align: center;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        
+        .back-link {
+            display: inline-block;
+            background: #2c5530;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-bottom: 2rem;
+        }
+        
+        .ancestry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .ancestry-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            border-left: 5px solid;
+        }
+        
+        .percentage {
+            font-size: 2rem;
+            font-weight: bold;
+            margin: 0.5rem 0;
+        }
+        
+        .bar-container {
+            background: #e9ecef;
+            height: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .bar {
+            height: 100%;
+            border-radius: 10px;
+            transition: width 2s ease;
+        }
+        
+        .description {
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🧬 Hidden Lineage - Ancestry Results</h1>
+        <p>Your Genetic Heritage Breakdown</p>
+    </div>
+    
+    <div class="container">
+        <a href="../index.html" class="back-link">← Back to Main Site</a>
+        
+        <div class="ancestry-grid">
+            <div class="ancestry-card" style="border-color: #8884d8;">
+                <h3>European Hunter-Gatherer</h3>
+                <div class="percentage" style="color: #8884d8;">35.2%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #8884d8; width: 70%;"></div>
+                </div>
+                <p class="description">Ancient European populations before agriculture</p>
+            </div>
+            
+            <div class="ancestry-card" style="border-color: #82ca9d;">
+                <h3>Anatolian Farmer</h3>
+                <div class="percentage" style="color: #82ca9d;">28.7%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #82ca9d; width: 57%;"></div>
+                </div>
+                <p class="description">Neolithic farmers from Anatolia</p>
+            </div>
+            
+            <div class="ancestry-card" style="border-color: #ffc658;">
+                <h3>Western Steppe Herder</h3>
+                <div class="percentage" style="color: #ffc658;">22.1%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #ffc658; width: 44%;"></div>
+                </div>
+                <p class="description">Bronze Age steppe populations</p>
+            </div>
+            
+            <div class="ancestry-card" style="border-color: #ff7c7c;">
+                <h3>East Asian</h3>
+                <div class="percentage" style="color: #ff7c7c;">8.3%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #ff7c7c; width: 17%;"></div>
+                </div>
+                <p class="description">East Asian ancestry component</p>
+            </div>
+            
+            <div class="ancestry-card" style="border-color: #8dd1e1;">
+                <h3>Sub-Saharan African</h3>
+                <div class="percentage" style="color: #8dd1e1;">3.9%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #8dd1e1; width: 8%;"></div>
+                </div>
+                <p class="description">African ancestry component</p>
+            </div>
+            
+            <div class="ancestry-card" style="border-color: #d084d0;">
+                <h3>Neanderthal</h3>
+                <div class="percentage" style="color: #d084d0;">1.5%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #d084d0; width: 3%;"></div>
+                </div>
+                <p class="description">Archaic human ancestry</p>
+            </div>
+            
+            <div class="ancestry-card" style="border-color: #87d068;">
+                <h3>Denisovan</h3>
+                <div class="percentage" style="color: #87d068;">0.3%</div>
+                <div class="bar-container">
+                    <div class="bar" style="background: #87d068; width: 1%;"></div>
+                </div>
+                <p class="description">Denisovan archaic ancestry</p>
+            </div>
+        </div>
+        
+        <div style="background: white; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
+            <h3>Summary</h3>
+            <p><strong>86% European heritage</strong> from Hunter-Gatherers, Farmers, and Steppe peoples</p>
+            <p><strong>12.2% Global ancestry</strong> from East Asian and African populations</p>
+            <p><strong>1.8% Archaic ancestry</strong> from Neanderthal and Denisovan heritage</p>
+        </div>
+    </div>
+</body>
+</html>

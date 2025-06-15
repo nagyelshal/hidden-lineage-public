@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Results - Hidden Lineage</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FZPJPTWYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9FZPJPTWYK');
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+            flex-shrink: 0;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        .mode-label {
+            transition: all 0.3s ease;
+            opacity: 0.6;
+        }
+
+        .mode-label.active {
+            opacity: 1;
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #667eea;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(26px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            text-align: center;
+            background: transparent;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.9);
+            border: 2px solid #ff6b35;
+            padding: 8px 16px;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ff6b35;
+            margin-bottom: 20px;
+        }
+
+        /* Main Sections */
+        .section {
+            margin-bottom: 60px;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Component Grid */
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .component-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            transition: transform 0.3s ease;
+        }
+
+        .component-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+        }
+
+        .component-card .component-id {
+            color: #667eea;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .component-card .percentage {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 8px;
+        }
+
+        .component-card .description {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        /* Verdict Cards */
+        .verdict-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .verdict-card {
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .verdict-missed {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a24);
+            color: white;
+        }
+
+        .verdict-found {
+            background: linear-gradient(135deg, #51cf66, #40c057);
+            color: white;
+        }
+
+        .verdict-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .verdict-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .verdict-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid rgba(255,255,255,0.2);
+            line-height: 1.5;
+        }
+
+        .verdict-card li:last-child {
+            border-bottom: none;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-card {
+            text-align: center;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .stat-strong { color: #28a745; }
+        .stat-moderate { color: #ff9800; }
+        .stat-weak { color: #f44336; }
+        .stat-total { color: #667eea; }
+
+        /* Scientific Content */
+        .scientific-content {
+            display: none;
+            background: #f1f3f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .show-scientific .scientific-content {
+            display: block;
+        }
+
+        /* Bottom CTA */
+        .bottom-cta {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px 10px;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Key Discovery Box */
+        .discovery-box {
+            background: #e8f5e8;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 30px;
+            border-left: 4px solid #28a745;
+        }
+
+        .discovery-box h4 {
+            color: #155724;
+            margin-bottom: 10px;
+        }
+
+        .discovery-box p {
+            color: #155724;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                order: 2;
+                justify-content: center;
+                gap: 12px;
+            }
+            
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 8px 12px;
+            }
+            
+            .mode-toggle {
+                order: 3;
+                font-size: 0.75rem;
+            }
+
+            .hero {
+                padding: 30px 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+                line-height: 1.2;
+                margin-bottom: 12px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 15px;
+            }
+
+            .status-badge {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+                margin-bottom: 15px;
+            }
+
+            .container {
+                padding: 0 15px;
+            }
+
+            .section {
+                padding: 25px 20px;
+                margin-bottom: 40px;
+            }
+
+            .section h2 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 5px;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            .verdict-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .verdict-card {
+                padding: 20px;
+            }
+
+            .verdict-card h3 {
+                font-size: 1.3rem;
+                margin-bottom: 15px;
+            }
+
+            .verdict-card li {
+                padding: 10px 0;
+                font-size: 0.9rem;
+            }
+
+            .component-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .component-card {
+                padding: 15px;
+            }
+
+            .component-card .percentage {
+                font-size: 1.2rem;
+            }
+
+            .component-card .description {
+                font-size: 0.85rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 15px;
+            }
+
+            .stat-card {
+                padding: 20px 15px;
+            }
+
+            .stat-number {
+                font-size: 1.8rem;
+            }
+
+            .bottom-cta {
+                padding: 30px 20px;
+                margin-bottom: 30px;
+            }
+
+            .bottom-cta h3 {
+                font-size: 1.4rem;
+                margin-bottom: 15px;
+            }
+
+            .bottom-cta p {
+                font-size: 0.9rem;
+                margin-bottom: 25px;
+            }
+
+            .btn-secondary {
+                padding: 10px 20px;
+                margin: 5px;
+                font-size: 0.9rem;
+                display: block;
+                margin: 10px auto;
+                width: 200px;
+                text-align: center;
+            }
+
+            .discovery-box {
+                padding: 15px;
+                margin-top: 20px;
+            }
+
+            .discovery-box h4 {
+                font-size: 1.1rem;
+            }
+
+            .discovery-box p {
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.7rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.9rem;
+            }
+
+            .status-badge {
+                font-size: 0.75rem;
+                padding: 5px 10px;
+            }
+
+            .section h2 {
+                font-size: 1.3rem;
+            }
+
+            .verdict-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .verdict-card li {
+                font-size: 0.85rem;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 1.6rem;
+            }
+
+            .component-card .percentage {
+                font-size: 1.1rem;
+            }
+
+            .component-card .description {
+                font-size: 0.8rem;
+            }
+
+            .nav-links {
+                gap: 8px;
+            }
+
+            .nav-link {
+                font-size: 0.75rem;
+                padding: 6px 8px;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+
+            .component-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .component-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧬 Hidden Lineage</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="results.html" class="nav-link active">Results</a>
+                <a href="ancestral_timeline.html" class="nav-link">Timeline</a>
+                <a href="methodology.html" class="nav-link">Methodology</a>
+                <a href="compare.html" class="nav-link">Compare</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+            <div class="mode-toggle">
+                <span class="mode-label" id="discovery-label">🔍 Discovery</span>
+                <div class="toggle-switch" onclick="toggleMode()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span class="mode-label" id="scientific-label">🧪 Scientific</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">The Genetic Archaeology Results</h1>
+            <p class="hero-subtitle">What 45,000 years of data revealed about modern DNA</p>
+            
+            <div class="status-badge">
+                📈 K=27 Analysis Complete • 16,770 Ancient & Modern Samples
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- The Verdict -->
+            <section class="section">
+                <h2>🧭 Beyond the Basics: What We Found Using Archaeogenomics</h2>
+                
+                <div class="verdict-grid">
+                    <div class="verdict-card verdict-missed">
+                        <h3>🔎 What Commercial DNA Doesn't Typically Cover</h3>
+                        <ul>
+                            <li><strong>Deep-Time Context:</strong> Most platforms emphasize recent ancestry (~500 years)</li>
+                            <li><strong>Ancient Populations:</strong> No integration of Neolithic, Bronze Age, or Iron Age genomes</li>
+                            <li><strong>Substructure:</strong> Clustering is optimized for health + simplicity, not archaeology</li>
+                            <li><strong>Method Focus:</strong> Identity-by-Descent (IBD) vs. ADMIXTURE clustering models</li>
+                            <li><strong>Panel Source:</strong> Modern regional references instead of ancient genomic panels</li>
+                        </ul>
+                    </div>
+
+                    <div class="verdict-card verdict-found">
+                        <h3>✅ What Research Analysis Revealed</h3>
+                        <ul>
+                            <li><strong>Medieval Central European Clustering:</strong> Strong signals overlapping Jewish diasporas of ~1250-1400 CE</li>
+                            <li><strong>Ancient Component Structure:</strong> 27 distinct ancestral threads identified</li>
+                            <li><strong>Geographic Precision:</strong> Specific regional and temporal connections</li>
+                            <li><strong>Population Archaeology:</strong> Deep ancestry beyond recent relatives</li>
+                            <li><strong>Scientific Validation:</strong> Cross-validated with 16,770 reference samples</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scientific-content">
+                    <h4>🧪 Methodological Differences</h4>
+                    <p><strong>Commercial DNA:</strong> Modern reference panels + IBD segment matching + continental groupings</p>
+                    <p><strong>Hidden Lineage:</strong> Ancient + modern panels + ADMIXTURE clustering + component inference</p>
+                    <p><strong>Time Depth:</strong> ~500 years vs 45,000 years</p>
+                    <p><strong>Resolution:</strong> 5-7 broad categories vs 27 ancestral components</p>
+                    <p><strong>Purpose:</strong> Genealogy + health insights vs archaeological population research</p>
+                </div>
+            </section>
+
+            <!-- K=27 Component Results -->
+            <section class="section">
+                <h2>🧬 Complete K=27 Component Breakdown</h2>
+                <p style="margin-bottom: 30px; color: #7f8c8d;">
+                    Based on chromosome 22 analysis of 16,770 samples. Each component represents a distinct ancestral population cluster.
+                </p>
+
+                <div class="component-grid">
+                    <div class="component-card">
+                        <div class="component-id">Component 10 – "Armenian Backbone"</div>
+                        <div class="percentage">22.1%</div>
+                        <div class="description">Armenia Urartian IA + French + Kenyan PN + diverse populations</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-id">Component 15 – "Eurasian Bridge"</div>
+                        <div class="percentage">15.5%</div>
+                        <div class="description">Han Chinese + Ukraine EBA + North Ossetian + Biaka + England MBA</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-id">Component 14 – "Mediterranean Hub"</div>
+                        <div class="percentage">15.4%</div>
+                        <div class="description">Complex Mediterranean cluster - analysis in progress</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-id">Component 12 – "Multi-Regional"</div>
+                        <div class="percentage">12.0%</div>
+                        <div class="description">Multi-population cluster under investigation</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-id">Component 26 – "Anglo-Central Asian"</div>
+                        <div class="percentage">10.6%</div>
+                        <div class="description">England LBA + Tajik + Dominican Ceramic + Mongolia EBA</div>
+                    </div>
+                    <div class="component-card">
+                        <div class="component-id">Remaining Components – "Minor Threads"</div>
+                        <div class="percentage">24.4%</div>
+                        <div class="description">22 smaller ancestral threads (0.1% - 4.2% each) - detailed breakdown available</div>
+                    </div>
+                </div>
+
+                <div class="scientific-content">
+                    <h4>🧪 Component Interpretation Guidelines</h4>
+                    <p><strong>High K Caution:</strong> Components at K=27 may include reference panel artifacts</p>
+                    <p><strong>Population Labels:</strong> Based on highest-loading reference individuals, not direct ancestry</p>
+                    <p><strong>Percentages:</strong> Reflect genetic similarity to component, not literal heritage proportions</p>
+                    <p><strong>Validation:</strong> Results will be tested across K=28+ and full genome analysis</p>
+                </div>
+            </section>
+
+            <!-- Statistical Summary -->
+            <section class="section">
+                <h2>📊 Analysis Summary</h2>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-number stat-strong">27</div>
+                        <div>Ancestral Components</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number stat-total">16,770</div>
+                        <div>Reference Samples</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number stat-moderate">0.63218</div>
+                        <div>Cross-Validation Error</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number stat-strong">45,000</div>
+                        <div>Years of History</div>
+                    </div>
+                </div>
+
+                <div class="discovery-box">
+                    <h4>🎉 Key Discovery</h4>
+                    <p>
+                        Research-grade analysis revealed <strong>complex ancestral structure spanning 45,000 years</strong> that standard DNA tests don't typically explore. 
+                        Some of the strongest signals connect to Medieval Jewish diasporas and older Levantine lineages — not seen in typical DNA tests.
+                    </p>
+                </div>
+
+                <div class="scientific-content">
+                    <h4>🧪 Technical Validation</h4>
+                    <p><strong>Cross-Validation:</strong> 5-fold CV confirms model stability (lower error = better fit)</p>
+                    <p><strong>Sample Diversity:</strong> AADR v62 + SGDP + 1000G spanning global populations</p>
+                    <p><strong>SNP Coverage:</strong> 7,401 chromosome 22 sites after quality filtering</p>
+                    <p><strong>Algorithm:</strong> ADMIXTURE v1.3.0 with maximum likelihood estimation</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Bottom CTA -->
+    <section class="bottom-cta">
+        <div class="container">
+            <h3 style="margin-bottom: 20px;">Explore the Complete Analysis</h3>
+            <p style="margin-bottom: 30px; opacity: 0.9;">
+                This is just the beginning. Dive deeper into the methodology, timeline, and ongoing research.
+            </p>
+            <div style="text-align: center; margin-bottom: 30px;">
+                <a href="ancestral_timeline.html" class="btn-secondary">View Timeline</a>
+                <a href="methodology.html" class="btn-secondary">Read Methodology</a>
+                <a href="index.html" class="btn-secondary">Back to Overview</a>
+            </div>
+            
+            <p style="font-size: 0.85rem; color: rgba(255,255,255,0.7); text-align: center; margin-top: 40px;">
+                🧬 Hidden Lineage is a research-grade extension of publicly available tools and open data. It is not affiliated with commercial platforms like 23andMe®, AncestryDNA®, or MyHeritage®. Results are for exploratory and historical insight only.
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Initialize mode based on URL parameter or default to discovery
+        function initializeMode() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const mode = urlParams.get('mode');
+            
+            const toggle = document.querySelector('.toggle-switch');
+            const body = document.body;
+            const discoveryLabel = document.getElementById('discovery-label');
+            const scientificLabel = document.getElementById('scientific-label');
+            
+            if (mode === 'scientific') {
+                toggle.classList.add('active');
+                body.classList.add('show-scientific');
+                discoveryLabel.classList.remove('active');
+                scientificLabel.classList.add('active');
+            } else {
+                // Default to discovery mode
+                discoveryLabel.classList.add('active');
+                scientificLabel.classList.remove('active');
+            }
+        }
+
+        // Mode toggle functionality with visual feedback
+        function toggleMode() {
+            const toggle = document.querySelector('.toggle-switch');
+            const body = document.body;
+            const discoveryLabel = document.getElementById('discovery-label');
+            const scientificLabel = document.getElementById('scientific-label');
+            
+            toggle.classList.toggle('active');
+            body.classList.toggle('show-scientific');
+            
+            if (body.classList.contains('show-scientific')) {
+                discoveryLabel.classList.remove('active');
+                scientificLabel.classList.add('active');
+                // Update URL parameter
+                const url = new URL(window.location);
+                url.searchParams.set('mode', 'scientific');
+                window.history.replaceState({}, '', url);
+            } else {
+                discoveryLabel.classList.add('active');
+                scientificLabel.classList.remove('active');
+                // Remove URL parameter
+                const url = new URL(window.location);
+                url.searchParams.delete('mode');
+                window.history.replaceState({}, '', url);
+            }
+        }
+
+        // Initialize mode on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeMode();
+        });
+
+        // Track page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Results',
+                page_location: window.location.href
+            });
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Track mode toggles for analytics
+        function trackModeToggle(mode) {
+            if (typeof gtag !== 'undefined') {
+                gtag('event', 'mode_toggle', {
+                    'custom_parameter': mode
+                });
+            }
+        }
+    </script>
+</body>
+</html>

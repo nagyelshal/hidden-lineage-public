@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Methodology - Hidden Lineage</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FZPJPTWYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9FZPJPTWYK');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #667eea;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(26px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            text-align: center;
+            background: transparent;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+
+        /* Main Sections */
+        .section {
+            margin-bottom: 60px;
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .section h2 {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .section h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        /* Pipeline Steps */
+        .pipeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .pipeline-step {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .step-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .step-description {
+            color: #7f8c8d;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Technical Details */
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .tech-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #e9ecef;
+        }
+
+        .tech-card h4 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+
+        .tech-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tech-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f1f3f4;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tech-value {
+            color: #667eea;
+            font-weight: 600;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Monaco', 'Menlo', 'Consolas', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+        }
+
+        /* Limitations Box */
+        .limitations-box {
+            background: linear-gradient(135deg, #fff3cd, #ffeaa7);
+            border: 1px solid #e67e22;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .limitations-box h4 {
+            color: #856404;
+            margin-bottom: 15px;
+        }
+
+        .limitations-box ul {
+            color: #856404;
+            padding-left: 20px;
+        }
+
+        .limitations-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Future Work Box */
+        .future-box {
+            background: linear-gradient(135deg, #d4edda, #c3e6cb);
+            border: 1px solid #27ae60;
+            padding: 25px;
+            border-radius: 10px;
+            margin: 30px 0;
+        }
+
+        .future-box h4 {
+            color: #155724;
+            margin-bottom: 15px;
+        }
+
+        .future-box ul {
+            color: #155724;
+            padding-left: 20px;
+        }
+
+        .future-box li {
+            margin-bottom: 8px;
+        }
+
+        /* Scientific Content */
+        .scientific-content {
+            display: none;
+            background: #f1f3f4;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
+            border-left: 4px solid #667eea;
+        }
+
+        .show-scientific .scientific-content {
+            display: block;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px 10px;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                order: 2;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .mode-toggle {
+                order: 3;
+                font-size: 0.75rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .section {
+                padding: 25px;
+                margin-bottom: 40px;
+            }
+
+            .section h2 {
+                font-size: 1.6rem;
+            }
+
+            .pipeline-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 1024px) {
+            .nav-links {
+                gap: 15px;
+            }
+            
+            .nav-link {
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧬 Hidden Lineage</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="results.html" class="nav-link">Results</a>
+                <a href="ancestral_timeline.html" class="nav-link">Timeline</a>
+                <a href="methodology.html" class="nav-link active">Methodology</a>
+                <a href="#" class="nav-link">Compare Methods</a>
+                <a href="#" class="nav-link">FAQ</a>
+                <a href="#" class="nav-link">Roadmap</a>
+            </div>
+            <div class="mode-toggle">
+                <span>🔍 Discovery</span>
+                <div class="toggle-switch" onclick="toggleMode()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span>🧪 Scientific</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Research Methodology</h1>
+            <p class="hero-subtitle">How we analyze modern DNA against 45,000 years of human history</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Overview -->
+            <section class="section">
+                <h2>🔬 Analysis Pipeline Overview</h2>
+                <p style="font-size: 1.1rem; margin-bottom: 30px;">
+                    Hidden Lineage uses research-grade population genetics tools to compare modern DNA against comprehensive ancient genome databases. 
+                    This methodology follows established academic protocols while making them accessible for personal ancestry analysis.
+                </p>
+
+                <div class="pipeline-grid">
+                    <div class="pipeline-step">
+                        <div class="step-number">1</div>
+                        <div class="step-title">Data Preprocessing</div>
+                        <div class="step-description">Raw DNA file converted to research format (PLINK), filtered for quality, and standardized to GRCh37 coordinates</div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">2</div>
+                        <div class="step-title">Reference Panel Assembly</div>
+                        <div class="step-description">16,770 ancient and modern samples merged from AADR, SGDP, and 1000 Genomes databases</div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">3</div>
+                        <div class="step-title">SNP Intersection</div>
+                        <div class="step-description">Identify overlapping genetic markers between your DNA and reference panels (7,401 sites on Chr22)</div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">4</div>
+                        <div class="step-title">ADMIXTURE Analysis</div>
+                        <div class="step-description">Maximum likelihood clustering to infer ancestral components across K=3 to K=27+ values (note: high K may introduce panel imbalance artifacts)</div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">5</div>
+                        <div class="step-title">Cross-Validation</div>
+                        <div class="step-description">5-fold CV to determine optimal K value and validate model stability</div>
+                    </div>
+
+                    <div class="pipeline-step">
+                        <div class="step-number">6</div>
+                        <div class="step-title">Population Inference</div>
+                        <div class="step-description">Components interpreted based on highest-loading reference individuals and archaeological context</div>
+                    </div>
+                </div>
+
+                <div class="scientific-content">
+                    <h4>🧪 Technical Implementation Details</h4>
+                    <p><strong>Quality Control:</strong> SNPs filtered for MAF > 0.01, missing data < 10%, HWE p > 1e-6</p>
+                    <p><strong>Linkage Pruning:</strong> LD-based pruning using <code>--indep-pairwise 50 5 0.2</code> (50 SNP window, 5 SNP step, r² < 0.2)</p>
+                    <p><strong>ADMIXTURE Convergence:</strong> Multiple replicates per K with different random seeds, best replicate selected by highest log-likelihood</p>
+                    <p><strong>Ancient DNA Treatment:</strong> Pseudo-haploid calls only, UDG-treated samples preferred, contamination < 5%</p>
+                    <p><strong>Computational Resources:</strong> Analysis performed on Ubuntu 22.04 LTS with 64GB RAM, 4-core parallel processing</p>
+                </div>
+            </section>
+
+            <!-- Technical Specifications -->
+            <section class="section">
+                <h2>⚙️ Technical Specifications</h2>
+                
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Software Stack</h4>
+                        <ul class="tech-list">
+                            <li><span>ADMIXTURE</span> <span class="tech-value">v1.3.0</span></li>
+                            <li><span>PLINK</span> <span class="tech-value">v1.9</span></li>
+                            <li><span>Python</span> <span class="tech-value">3.12</span></li>
+                            <li><span>Snakemake</span> <span class="tech-value">Pipeline</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>Data Sources</h4>
+                        <ul class="tech-list">
+                            <li><span>AADR</span> <span class="tech-value">v62</span></li>
+                            <li><span>SGDP</span> <span class="tech-value">279 samples</span></li>
+                            <li><span>1000 Genomes</span> <span class="tech-value">Phase 3</span></li>
+                            <li><span>Total Samples</span> <span class="tech-value">16,770</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>Current Analysis</h4>
+                        <ul class="tech-list">
+                            <li><span>Chromosome</span> <span class="tech-value">22 only</span></li>
+                            <li><span>SNPs</span> <span class="tech-value">7,401</span></li>
+                            <li><span>K Range</span> <span class="tech-value">3-27+</span></li>
+                            <li><span>CV Method</span> <span class="tech-value">5-fold</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>Performance</h4>
+                        <ul class="tech-list">
+                            <li><span>Best CV Score</span> <span class="tech-value"><a href="results.html" style="color: #667eea;">0.63218</a></span></li>
+                            <li><span>Optimal K</span> <span class="tech-value">27 (current)</span></li>
+                            <li><span>Runtime</span> <span class="tech-value">~2h per K (Chr22, 4 cores)</span></li>
+                            <li><span>Convergence</span> <span class="tech-value">80-150 iter</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="scientific-content">
+                    <h4>🧪 ADMIXTURE Algorithm Details</h4>
+                    <div class="code-block">
+# File: aadr_HO_chr22_filtered.{bed, bim, fam}
+# Multiple replicates with different seeds
+for seed in {1..5}; do
+    admixture --cv=5 -j4 -s $seed aadr_HO_chr22_filtered.bed K
+done
+# Best replicate selected by highest log-likelihood
+                    </div>
+                    <p><strong>Maximum Likelihood Estimation:</strong> Uses expectation-maximization algorithm to estimate ancestry proportions</p>
+                    <p><strong>Model Selection:</strong> Cross-validation error guides optimal K selection, not visual interpretation</p>
+                    <p><strong>Convergence Criteria:</strong> Log-likelihood delta < 0.0001 between iterations</p>
+                    <p><strong>Replicate Selection:</strong> 5 replicates per K value, best likelihood score retained</p>
+                </div>
+            </section>
+
+            <!-- Data Sources -->
+            <section class="section">
+                <h2>📚 Reference Datasets</h2>
+                
+                <h3>Allen Ancient DNA Resource (AADR v62)</h3>
+                <p>Comprehensive database of ancient genomes spanning 45,000 years of human history. Includes Paleolithic hunter-gatherers, Neolithic farmers, Bronze Age populations, and historical samples through medieval periods.</p>
+                
+                <h3>Simons Genome Diversity Project (SGDP)</h3>
+                <p>High-coverage modern genomes representing global population diversity. Provides contemporary baseline for comparing ancient signals.</p>
+                
+                <h3>1000 Genomes Project Phase 3</h3>
+                <p>Large-scale modern human variation dataset covering major continental populations. Essential for understanding recent demographic history.</p>
+
+                <div class="scientific-content">
+                    <h4>🧪 Sample Composition Breakdown</h4>
+                    <p><strong>Ancient DNA (AADR):</strong> ~15,000 samples from archaeological sites worldwide</p>
+                    <p><strong>Ancient DNA Filters:</strong> UDG-treated preferred, contamination estimates < 5%, pseudo-haploid calls only</p>
+                    <p><strong>Modern High-Coverage (SGDP):</strong> 279 individuals from 142 populations</p>
+                    <p><strong>Population Genetics (1000G):</strong> 2,504 individuals from 26 populations</p>
+                    <p><strong>Geographic Coverage:</strong> All inhabited continents, 45,000 year time span</p>
+                    <p><strong>Data Format:</strong> All samples converted to pseudo-haploid format for consistency</p>
+                </div>
+            </section>
+
+            <!-- Current Limitations -->
+            <section class="section">
+                <h2>⚠️ Current Limitations & Future Improvements</h2>
+                
+                <div class="limitations-box">
+                    <h4>Current Limitations</h4>
+                    <ul>
+                        <li><strong>Chromosome 22 Only:</strong> Single chromosome analysis reduces power and may miss genome-wide patterns</li>
+                        <li><strong>Reference Panel Imbalance:</strong> Some populations over-represented, leading to potential assignment artifacts at high K</li>
+                        <li><strong>No IBD Analysis:</strong> Focus on population structure rather than recent genealogical connections</li>
+                        <li><strong>Preliminary Results:</strong> Chr22-based estimates will be refined with full genome analysis</li>
+                        <li><strong>Population Labels:</strong> Component assignments based on reference individuals, not direct ancestry claims</li>
+                    </ul>
+                </div>
+
+                <div class="future-box">
+                    <h4>Planned Improvements</h4>
+                    <ul>
+                        <li><strong>Full Genome Analysis:</strong> Expand to all 22 autosomes for comprehensive ancestry inference</li>
+                        <li><strong>Panel Rebalancing:</strong> Add underrepresented populations and downsample over-represented groups</li>
+                        <li><strong>Rare Dataset Integration:</strong> Include specialized ancient DNA collections for specific regions</li>
+                        <li><strong>IBD Complement:</strong> Add identity-by-descent analysis for recent genealogical connections</li>
+                        <li><strong>Uncertainty Quantification:</strong> Bootstrap confidence intervals for ancestry estimates</li>
+                        <li><strong>Interactive Visualization:</strong> Dynamic exploration of results across different K values</li>
+                    </ul>
+                </div>
+
+                <div class="scientific-content">
+                    <h4>🧪 Validation Strategy</h4>
+                    <p><strong>Cross-Validation:</strong> 5-fold CV ensures model generalizability and prevents overfitting</p>
+                    <p><strong>K Selection:</strong> Objective CV error minimization rather than subjective interpretation</p>
+                    <p><strong>Reference Validation:</strong> Known population relationships verified in analysis</p>
+                    <p><strong>Reproducibility:</strong> Standardized pipeline with version-controlled dependencies</p>
+                    <p><strong>Quality Assurance:</strong> Pipeline frozen at Git commit hash for reproducible results</p>
+                    <p><strong>Statistical Significance:</strong> Bootstrap resampling planned for confidence intervals in full genome analysis</p>
+                </div>
+            </section>
+
+            <!-- Comparison with Commercial Tests -->
+            <section class="section">
+                <h2>🔄 How This Differs from Commercial DNA Testing</h2>
+                
+                <div class="tech-grid">
+                    <div class="tech-card">
+                        <h4>Commercial DNA Tests</h4>
+                        <ul class="tech-list">
+                            <li><span>Reference Data</span> <span class="tech-value">Modern only</span></li>
+                            <li><span>Time Depth</span> <span class="tech-value">~500 years avg*</span></li>
+                            <li><span>Method</span> <span class="tech-value">IBD segments</span></li>
+                            <li><span>Categories</span> <span class="tech-value">5-7 broad</span></li>
+                            <li><span>Purpose</span> <span class="tech-value">Genealogy</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="tech-card">
+                        <h4>Hidden Lineage</h4>
+                        <ul class="tech-list">
+                            <li><span>Reference Data</span> <span class="tech-value">Ancient + Modern</span></li>
+                            <li><span>Time Depth</span> <span class="tech-value">45,000 years</span></li>
+                            <li><span>Method</span> <span class="tech-value">ADMIXTURE</span></li>
+                            <li><span>Components</span> <span class="tech-value">27+ detailed</span></li>
+                            <li><span>Purpose</span> <span class="tech-value">Archaeology</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <p style="margin-top: 20px; color: #7f8c8d; font-style: italic;">
+                    *Average genealogical time depth; some IBD segments can extend to ~1,000 years. 
+                    Both approaches provide valuable but different insights. Commercial tests excel at recent genealogy and health-related variants, 
+                    while Hidden Lineage explores deep evolutionary history and archaeological population connections.
+                </p>
+
+                <div class="scientific-content">
+                    <h4>🧪 Methodological Complementarity</h4>
+                    <p><strong>IBD vs ADMIXTURE:</strong> Different algorithms answer different questions about ancestry</p>
+                    <p><strong>Time Scales:</strong> Recent vs deep evolutionary history serve different research purposes</p>
+                    <p><strong>Reference Panels:</strong> Modern convenience samples vs archaeological specimens</p>
+                    <p><strong>Interpretation:</strong> Genealogical relationships vs population structure</p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <h3 style="margin-bottom: 20px;">Explore the Analysis</h3>
+            <p style="margin-bottom: 30px; opacity: 0.9;">
+                Dive deeper into the results, timeline, and ongoing research.
+            </p>
+            <div>
+                <a href="results.html" class="btn-secondary">View Results</a>
+                <a href="ancestral_timeline.html" class="btn-secondary">Timeline</a>
+                <a href="index.html" class="btn-secondary">Home</a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Mode toggle functionality
+        function toggleMode() {
+            const toggle = document.querySelector('.toggle-switch');
+            const body = document.body;
+            
+            toggle.classList.toggle('active');
+            body.classList.toggle('show-scientific');
+        }
+
+        // Track page view
+        if (typeof gtag !== 'undefined') {
+            gtag('event', 'page_view', {
+                page_title: 'Methodology',
+                page_location: window.location.href
+            });
+        }
+    </script>
+</body>
+</html>

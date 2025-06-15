@@ -1,0 +1,16 @@
+PLINK v1.90b7 64-bit (16 Jan 2023)
+Options in effect:
+  --bfile aadr_subset
+  --keep samples_to_extract.txt
+  --make-bed
+  --out ancient_targets
+
+Hostname: poseidon
+Working directory: /data/Hidden_Lineage/web
+Start time: Fri May 30 02:15:14 2025
+
+Random number seed: 1748596514
+63934 MB RAM detected; reserving 31967 MB for main workspace.
+Error: Failed to open aadr_subset.bed.
+
+End time: Fri May 30 02:15:14 2025

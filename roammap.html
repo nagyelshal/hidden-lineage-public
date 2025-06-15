@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Roadmap - Hidden Lineage</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FZPJPTWYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9FZPJPTWYK');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+
+        .mode-toggle {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-shrink: 0;
+            font-size: 0.8rem;
+        }
+
+        .toggle-switch {
+            position: relative;
+            width: 50px;
+            height: 24px;
+            background: #ddd;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .toggle-switch.active {
+            background: #667eea;
+        }
+
+        .toggle-slider {
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 20px;
+            height: 20px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .toggle-switch.active .toggle-slider {
+            transform: translateX(26px);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            text-align: center;
+            background: transparent;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Current Status */
+        .status-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .status-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        .phase-indicator {
+            display: inline-flex;
+            align-items: center;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .phase-indicator::before {
+            content: "🚀";
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        /* Timeline */
+        .timeline-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            display: flex;
+            align-items: flex-start;
+            gap: 30px;
+        }
+
+        .timeline-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .timeline-marker {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: white;
+            flex-shrink: 0;
+            position: relative;
+            z-index: 2;
+        }
+
+        .timeline-item:not(:last-child) .timeline-marker::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 3px;
+            height: 70px;
+            background: #e9ecef;
+        }
+
+        .phase-1 .timeline-marker {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+        }
+
+        .phase-2 .timeline-marker {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .phase-3 .timeline-marker {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+
+        .phase-future .timeline-marker {
+            background: linear-gradient(135deg, #8b5cf6, #7c3aed);
+        }
+
+        .timeline-content {
+            flex: 1;
+            padding-top: 10px;
+        }
+
+        .timeline-phase {
+            display: inline-block;
+            background: #f1f3f4;
+            color: #666;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .phase-1 .timeline-phase {
+            background: #dcfce7;
+            color: #16a34a;
+        }
+
+        .phase-2 .timeline-phase {
+            background: #dbeafe;
+            color: #2563eb;
+        }
+
+        .phase-3 .timeline-phase {
+            background: #fef3c7;
+            color: #d97706;
+        }
+
+        .phase-future .timeline-phase {
+            background: #ede9fe;
+            color: #7c3aed;
+        }
+
+        .timeline-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+
+        .timeline-description {
+            color: #666;
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .timeline-features {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+
+        .timeline-features li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        .timeline-features li::before {
+            content: "✓";
+            color: #22c55e;
+            font-weight: bold;
+            margin-right: 10px;
+            margin-top: 2px;
+        }
+
+        .timeline-timeline {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        /* Scientific Content */
+        .scientific-content {
+            display: none;
+            background: #f1f3f4;
+            padding: 15px;
+            border-radius: 8px;
+            margin-top: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .show-scientific .scientific-content {
+            display: block;
+        }
+
+        /* Progress Bars */
+        .progress-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .progress-item {
+            margin-bottom: 30px;
+        }
+
+        .progress-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .progress-label {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .progress-name {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+
+        .progress-percentage {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .progress-bar {
+            height: 8px;
+            background: #e9ecef;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+            border-radius: 4px;
+            transition: width 0.5s ease;
+        }
+
+        /* Community Section */
+        .community-section {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-align: center;
+            padding: 40px;
+            border-radius: 15px;
+            margin-bottom: 40px;
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 25px;
+            border: 2px solid white;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 5px 10px;
+            display: inline-block;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #667eea;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                order: 2;
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .mode-toggle {
+                order: 3;
+                font-size: 0.75rem;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .timeline-item {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+                gap: 20px;
+            }
+
+            .timeline-marker {
+                width: 60px;
+                height: 60px;
+                font-size: 1.5rem;
+            }
+
+            .timeline-item:not(:last-child) .timeline-marker::after {
+                left: calc(50% + 30px);
+                transform: translateX(-50%) rotate(90deg);
+                width: 60px;
+                height: 3px;
+            }
+
+            .timeline-section, .status-section, .progress-section {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧬 Hidden Lineage</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="results.html" class="nav-link">Results</a>
+                <a href="ancestral_timeline.html" class="nav-link">Timeline</a>
+                <a href="methodology.html" class="nav-link">Methodology</a>
+                <a href="compare_methods.html" class="nav-link">Compare Methods</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="roadmap.html" class="nav-link active">Roadmap</a>
+            </div>
+            <div class="mode-toggle">
+                <span>🔍 Discovery</span>
+                <div class="toggle-switch" onclick="toggleMode()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span>🧪 Scientific</span>
+                <div style="font-size: 0.7rem; color: #666; margin-left: 10px; font-style: italic;">
+                    Toggle for technical details
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Development Roadmap</h1>
+            <p class="hero-subtitle">Building the future of personal genetic archaeology</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Current Status -->
+            <section class="status-section">
+                <h2 class="status-title">Current Status</h2>
+                <div class="phase-indicator">Phase 1: Research Preview</div>
+                <p style="color: #666; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+                    Hidden Lineage is currently in active research preview mode with full-genome ADMIXTURE runs underway. K=21–30 are in progress, and a balanced global reference panel is under construction. This foundational phase validates the methodology and confirms the ability to trace deep ancestry through ancient DNA.
+                </p>
+            </section>
+
+            <!-- Development Progress -->
+            <section class="progress-section">
+                <h2 style="text-align: center; font-size: 2rem; font-weight: 700; color: #2c3e50; margin-bottom: 40px;">Development Progress</h2>
+                
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span class="progress-name">Core Pipeline Development</span>
+                        <span class="progress-percentage">100%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 100%;"></div>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">ADMIXTURE pipeline, visualization, documentation complete</p>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span class="progress-name">Reference Panel Curation</span>
+                        <span class="progress-percentage">75%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 75%;"></div>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">AADR integration complete, balancing and rare populations in progress</p>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span class="progress-name">Full Genome Implementation</span>
+                        <span class="progress-percentage">25%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 25%;"></div>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">Infrastructure planning complete, computational scaling in development</p>
+                </div>
+
+                <div class="progress-item">
+                    <div class="progress-label">
+                        <span class="progress-name">User Upload Platform</span>
+                        <span class="progress-percentage">10%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 10%;"></div>
+                    </div>
+                    <p style="color: #666; font-size: 0.9rem; margin-top: 5px;">Privacy architecture design and security planning phase</p>
+                </div>
+            </section>
+
+            <!-- Timeline -->
+            <section class="timeline-section">
+                <h2 style="text-align: center; font-size: 2rem; font-weight: 700; color: #2c3e50; margin-bottom: 40px;">Development Timeline</h2>
+                
+                <div class="timeline">
+                    <div class="timeline-item phase-1">
+                        <div class="timeline-marker">1</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">COMPLETED</div>
+                            <h3 class="timeline-title">Phase 1: Research Preview</h3>
+                            <div class="timeline-description">
+                                Establish methodology and demonstrate feasibility with chromosome 22 analysis. Build core infrastructure and validate approach against known populations.
+                            </div>
+                            <ul class="timeline-features">
+                                <li>ADMIXTURE pipeline development and testing</li>
+                                <li>AADR ancient DNA reference integration</li>
+                                <li>K=27 model optimization and cross-validation success</li>
+                                <li>Interactive dashboard and visualization</li>
+                                <li>Comprehensive documentation and transparency</li>
+                                <li>Public website and methodology publication</li>
+                            </ul>
+                            <div class="timeline-timeline">✅ Completed: December 2024</div>
+                            
+                            <div class="scientific-content">
+                                <p><strong>Technical achievements:</strong> Integrated 15,000+ ancient genomes from AADR v62, optimized SNP filtering pipeline (MAF > 0.01, LD pruning r² < 0.2), achieved cross-validation error of 0.63218 at K=27.</p>
+                                <p><strong>Validation results:</strong> Successfully reproduced known population structure patterns, identified meaningful ancient connections (e.g., I1877 Neolithic farmer match).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item phase-2">
+                        <div class="timeline-marker">2</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">IN PROGRESS</div>
+                            <h3 class="timeline-title">Phase 2: Full Resolution</h3>
+                            <div class="timeline-description">
+                                Scale to whole-genome analysis and implement reference panel improvements. This phase will dramatically increase accuracy and provide robust confidence estimates.
+                            </div>
+                            <ul class="timeline-features">
+                                <li>Whole genome analysis (all 22 autosomes)</li>
+                                <li>Reference panel rebalancing and rare population integration</li>
+                                <li>Improved K optimization (targeting K=30-40)</li>
+                                <li>Bootstrap confidence intervals and uncertainty quantification</li>
+                                <li>Enhanced visualization with geographic mapping</li>
+                                <li>Comparative validation against academic studies</li>
+                            </ul>
+                            <div class="timeline-timeline">🔄 Target: January-February 2025</div>
+                            
+                            <div class="scientific-content">
+                                <p><strong>Computational scaling:</strong> Moving from ~7K to ~600K SNPs requires 100x more computation. Implementing distributed processing and memory optimization for feasible runtimes.</p>
+                                <p><strong>Reference improvements:</strong> Adding undersampled populations (Sub-Saharan Africa, Oceania, Americas), balancing temporal coverage, integrating recent high-coverage ancient genomes.</p>
+                                <p><strong>Statistical enhancements:</strong> Block bootstrap for confidence intervals, cross-validation across different K ranges, component stability analysis.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item phase-3">
+                        <div class="timeline-marker">3</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">PLANNED</div>
+                            <h3 class="timeline-title">Phase 3: Public Platform</h3>
+                            <div class="timeline-description">
+                                Launch user upload capabilities and build interactive platform for public access. Enable users to analyze their own DNA with the same research-grade methods.
+                            </div>
+                            <ul class="timeline-features">
+                                <li>Secure DNA file upload system (23andMe, AncestryDNA, etc.)</li>
+                                <li>Automated analysis pipeline with queue management</li>
+                                <li>Personalized interactive results dashboard</li>
+                                <li>Comparison tools against reference populations</li>
+                                <li>Privacy-first architecture with local processing options</li>
+                                <li>Community features and result sharing (opt-in)</li>
+                            </ul>
+                            <div class="timeline-timeline">🎯 Target: March-May 2025</div>
+                            
+                            <div class="scientific-content">
+                                <p><strong>Privacy architecture:</strong> End-to-end encryption, automatic data deletion, local processing options, HIPAA-compliant infrastructure design.</p>
+                                <p><strong>Scalability:</strong> Cloud-based processing pipeline with auto-scaling, estimated capacity for 100+ concurrent analyses.</p>
+                                <p><strong>Quality control:</strong> Automated contamination detection, coverage assessment, result validation against population structure.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item phase-future">
+                        <div class="timeline-marker">4+</div>
+                        <div class="timeline-content">
+                            <div class="timeline-phase">FUTURE</div>
+                            <h3 class="timeline-title">Advanced Features</h3>
+                            <div class="timeline-description">
+                                Explore cutting-edge applications including archaic ancestry, trait analysis, and integration with other genomic methods.
+                            </div>
+                            <ul class="timeline-features">
+                                <li>Neanderthal and Denisovan ancestry analysis</li>
+                                <li>IBD segment analysis for recent connections</li>
+                                <li>Trait-associated variant interpretation</li>
+                                <li>Integration with Y-chromosome and mitochondrial analysis</li>
+                                <li>Machine learning models for ancestry prediction</li>
+                                <li>Academic collaboration and peer review publication</li>
+                            </ul>
+                            <div class="timeline-timeline">🔮 Target: 2025-2026</div>
+                            
+                            <div class="scientific-content">
+                                <p><strong>Archaic ancestry:</strong> Implementation of qpAdm and ADMIXTOOLS for formal introgression testing, specialized handling of archaic reference genomes.</p>
+                                <p><strong>IBD analysis:</strong> Integration with genealogical-scale analysis using tools like IBDseq, bridging deep and recent ancestry.</p>
+                                <p><strong>Research integration:</strong> Collaboration with academic ancient DNA labs, contribution to open science initiatives, peer-reviewed publication pipeline.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Community Involvement -->
+            <section class="community-section">
+                <h2 style="margin-bottom: 20px;">Join the Development</h2>
+                <p style="margin-bottom: 30px; font-size: 1.1rem;">
+                    Hidden Lineage is being built transparently with community input. Follow progress, contribute feedback, and be part of advancing personal genetic archaeology.
+                </p>
+                <a href="mailto:research@hiddenlineage.com" class="btn-secondary">Get Updates</a>
+                <a href="https://github.com/nagyelshal/hidden-lineage" class="btn-secondary">Follow on GitHub</a>
+                <a href="faq.html" class="btn-secondary">Learn More</a>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Toggle scientific mode
+        function toggleMode() {
+            const toggle = document.querySelector('.toggle-switch');
+            const body = document.body;
+            
+            toggle.classList.toggle('active');
+            body.classList.toggle('show-scientific');
+        }
+
+        // Animate progress bars on load
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBars = document.querySelectorAll('.progress-fill');
+            
+            const observerOptions = {
+                threshold: 0.5,
+                rootMargin: '0px 0px -100px 0px'
+            };
+            
+            const observer = new IntersectionObserver(function(entries) {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.width = entry.target.style.width;
+                    }
+                });
+            }, observerOptions);
+            
+            progressBars.forEach(bar => observer.observe(bar));
+        });
+    </script>
+</body>
+</html>

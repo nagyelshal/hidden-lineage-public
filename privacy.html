@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Privacy Policy - Hidden Lineage</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FZPJPTWYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9FZPJPTWYK');
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #2c3e50;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Navigation */
+        .nav-bar {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            padding: 12px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .nav-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #2c3e50;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            transition: color 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #667eea;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0;
+            text-align: center;
+            background: transparent;
+        }
+
+        .hero-title {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: white;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        /* Content Section */
+        .content-section {
+            background: white;
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Last Updated */
+        .last-updated {
+            background: #f0f4ff;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .last-updated strong {
+            color: #667eea;
+        }
+
+        /* Table of Contents */
+        .toc {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 40px;
+        }
+
+        .toc h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+        }
+
+        .toc ol {
+            padding-left: 20px;
+        }
+
+        .toc li {
+            margin-bottom: 8px;
+        }
+
+        .toc a {
+            color: #667eea;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .toc a:hover {
+            color: #764ba2;
+        }
+
+        /* Section Headers */
+        .section-header {
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            margin: 40px 0 20px 0;
+        }
+
+        .section-header h2 {
+            color: #2c3e50;
+            font-size: 1.8rem;
+            margin: 0;
+        }
+
+        /* Subsections */
+        h3 {
+            color: #2c3e50;
+            margin: 25px 0 15px 0;
+            font-size: 1.3rem;
+        }
+
+        h4 {
+            color: #667eea;
+            margin: 20px 0 10px 0;
+            font-size: 1.1rem;
+        }
+
+        /* Lists */
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 25px;
+        }
+
+        li {
+            margin-bottom: 8px;
+        }
+
+        /* Important boxes */
+        .info-box {
+            background: #e8f4fd;
+            border: 1px solid #bfdbfe;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-box.warning {
+            background: #fff3cd;
+            border-color: #ffeaa7;
+        }
+
+        .info-box.success {
+            background: #d4edda;
+            border-color: #c3e6cb;
+        }
+
+        .info-box h4 {
+            margin-top: 0;
+            color: #1e40af;
+        }
+
+        .info-box.warning h4 {
+            color: #856404;
+        }
+
+        .info-box.success h4 {
+            color: #155724;
+        }
+
+        /* Contact information */
+        .contact-info {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .contact-info h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .contact-info a {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .nav-links {
+                order: 2;
+                justify-content: center;
+                gap: 15px;
+            }
+
+            .hero-title {
+                font-size: 2.2rem;
+            }
+
+            .content-section {
+                padding: 25px;
+            }
+
+            .toc {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧬 Hidden Lineage</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="results.html" class="nav-link">Results</a>
+                <a href="ancestral_timeline.html" class="nav-link">Timeline</a>
+                <a href="methodology.html" class="nav-link">Methodology</a>
+                <a href="compare_methods.html" class="nav-link">Compare Methods</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+                <a href="about.html" class="nav-link">About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Privacy Policy</h1>
+            <p class="hero-subtitle">How we protect your privacy and handle genetic information</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <div class="content-section">
+                <div class="last-updated">
+                    <strong>Last Updated:</strong> June 5, 2025 | <strong>Effective Date:</strong> June 5, 2025
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="toc">
+                    <h3>Table of Contents</h3>
+                    <ol>
+                        <li><a href="#overview">Overview</a></li>
+                        <li><a href="#current-phase">Current Phase: Research Preview</a></li>
+                        <li><a href="#data-collection">What Data We Collect</a></li>
+                        <li><a href="#data-use">How We Use Your Data</a></li>
+                        <li><a href="#data-sharing">Data Sharing and Disclosure</a></li>
+                        <li><a href="#data-security">Data Security Measures</a></li>
+                        <li><a href="#your-rights">Your Rights and Choices</a></li>
+                        <li><a href="#future-plans">Future Upload Platform</a></li>
+                        <li><a href="#contact">Contact Information</a></li>
+                        <li><a href="#changes">Changes to This Policy</a></li>
+                    </ol>
+                </div>
+
+                <!-- 1. Overview -->
+                <div class="section-header" id="overview">
+                    <h2>1. Overview</h2>
+                </div>
+                
+                <p>Hidden Lineage is committed to protecting your privacy, especially when it comes to genetic information. This Privacy Policy explains how we collect, use, and protect your information when you visit our website or use our services.</p>
+                
+                <div class="info-box">
+                    <h4>🛡️ Privacy First Approach</h4>
+                    <p>We believe genetic information is among the most sensitive personal data. Our privacy practices are designed with this principle at the core, prioritizing transparency, user control, and data minimization.</p>
+                </div>
+
+                <!-- 2. Current Phase -->
+                <div class="section-header" id="current-phase">
+                    <h2>2. Current Phase: Research Preview</h2>
+                </div>
+                
+                <p>Hidden Lineage is currently in <strong>research preview mode</strong>. This means:</p>
+                
+                <ul>
+                    <li><strong>No DNA upload capability:</strong> We do not currently accept user-submitted genetic data</li>
+                    <li><strong>Single sample analysis:</strong> The website displays analysis of one anonymized genome for demonstration purposes</li>
+                    <li><strong>No personal genetic data collected:</strong> We cannot analyze your DNA at this time</li>
+                    <li><strong>Website analytics only:</strong> We only collect standard web analytics data</li>
+                </ul>
+
+                <div class="info-box success">
+                    <h4>✅ Current Data Protection</h4>
+                    <p>Since we don't currently handle personal genetic data, your genetic privacy is fully protected during this research preview phase.</p>
+                </div>
+
+                <!-- 3. Data Collection -->
+                <div class="section-header" id="data-collection">
+                    <h2>3. What Data We Collect</h2>
+                </div>
+
+                <h3>3.1 Website Analytics Data</h3>
+                <p>We collect standard website analytics information through Google Analytics:</p>
+                <ul>
+                    <li>Pages visited and time spent on each page</li>
+                    <li>General geographic location (country/region level)</li>
+                    <li>Device type, browser type, and screen resolution</li>
+                    <li>How you arrived at our website (referral sources)</li>
+                    <li>Anonymous usage patterns and navigation behavior</li>
+                </ul>
+
+                <h3>3.2 Contact Information</h3>
+                <p>If you contact us directly via email, we collect:</p>
+                <ul>
+                    <li>Your email address</li>
+                    <li>Name (if provided)</li>
+                    <li>Message content</li>
+                    <li>Any additional information you choose to share</li>
+                </ul>
+
+                <h3>3.3 No Genetic Data (Current Phase)</h3>
+                <p>We currently do <strong>not</strong> collect, store, or process any personal genetic information.</p>
+
+                <!-- 4. Data Use -->
+                <div class="section-header" id="data-use">
+                    <h2>4. How We Use Your Data</h2>
+                </div>
+
+                <h3>4.1 Website Analytics</h3>
+                <ul>
+                    <li>Understand how visitors use our website</li>
+                    <li>Improve website performance and user experience</li>
+                    <li>Analyze which content is most valuable to users</li>
+                    <li>Debug technical issues and optimize loading times</li>
+                </ul>
+
+                <h3>4.2 Research and Development</h3>
+                <ul>
+                    <li>Understand user interest in genetic archaeology</li>
+                    <li>Gauge demand for different features and capabilities</li>
+                    <li>Plan future development priorities</li>
+                </ul>
+
+                <h3>4.3 Communication</h3>
+                <ul>
+                    <li>Respond to your inquiries and support requests</li>
+                    <li>Provide updates about the project (if you've requested them)</li>
+                    <li>Collaborate with researchers and potential contributors</li>
+                </ul>
+
+                <!-- 5. Data Sharing -->
+                <div class="section-header" id="data-sharing">
+                    <h2>5. Data Sharing and Disclosure</h2>
+                </div>
+
+                <h3>5.1 Third-Party Services</h3>
+                <p>We use the following third-party services:</p>
+                <ul>
+                    <li><strong>Google Analytics:</strong> Website usage analytics (anonymized data)</li>
+                    <li><strong>GitHub:</strong> Code repository hosting (public methodology)</li>
+                    <li><strong>Email services:</strong> For communication (if you contact us)</li>
+                </ul>
+
+                <h3>5.2 No Sale or Commercial Sharing</h3>
+                <div class="info-box">
+                    <h4>🚫 We Never Sell Data</h4>
+                    <p>We do not sell, rent, or commercially share any user data with third parties. We are not a commercial entity and have no financial incentive to monetize user information.</p>
+                </div>
+
+                <h3>5.3 Legal Requirements</h3>
+                <p>We may disclose information if required by law, such as:</p>
+                <ul>
+                    <li>In response to valid legal process (subpoenas, court orders)</li>
+                    <li>To protect the rights, safety, or property of users or others</li>
+                    <li>In connection with legal investigations</li>
+                </ul>
+
+                <!-- 6. Security -->
+                <div class="section-header" id="data-security">
+                    <h2>6. Data Security Measures</h2>
+                </div>
+
+                <h3>6.1 Current Security</h3>
+                <ul>
+                    <li><strong>HTTPS encryption:</strong> All website traffic is encrypted in transit</li>
+                    <li><strong>Minimal data collection:</strong> We only collect what's necessary</li>
+                    <li><strong>No sensitive data storage:</strong> No genetic or personal health information stored</li>
+                    <li><strong>Regular updates:</strong> Website infrastructure kept up to date</li>
+                </ul>
+
+                <h3>6.2 Future Genetic Data Security (Planned)</h3>
+                <p>When we implement DNA upload capabilities, security measures will include:</p>
+                <ul>
+                    <li><strong>End-to-end encryption:</strong> Genetic data encrypted during upload and storage</li>
+                    <li><strong>Local processing options:</strong> Ability to analyze data without uploading to servers</li>
+                    <li><strong>Automatic deletion:</strong> Genetic data deleted after analysis completion</li>
+                    <li><strong>Access controls:</strong> Strict limits on who can access genetic information</li>
+                    <li><strong>Audit logging:</strong> Complete records of data access and processing</li>
+                </ul>
+
+                <!-- 7. Your Rights -->
+                <div class="section-header" id="your-rights">
+                    <h2>7. Your Rights and Choices</h2>
+                </div>
+
+                <h3>7.1 Current Rights</h3>
+                <ul>
+                    <li><strong>Analytics opt-out:</strong> You can disable Google Analytics tracking</li>
+                    <li><strong>Contact data deletion:</strong> Request removal of any contact information</li>
+                    <li><strong>Data access:</strong> Request information about what data we have</li>
+                    <li><strong>Correction:</strong> Request correction of inaccurate information</li>
+                </ul>
+
+                <h3>7.2 Future Genetic Data Rights (Planned)</h3>
+                <p>When genetic analysis becomes available, you will have:</p>
+                <ul>
+                    <li><strong>Informed consent:</strong> Clear explanation before any genetic analysis</li>
+                    <li><strong>Immediate deletion:</strong> Right to delete genetic data at any time</li>
+                    <li><strong>Download results:</strong> Export your analysis results</li>
+                    <li><strong>Opt-out of research:</strong> Choose whether results contribute to research</li>
+                    <li><strong>Local processing:</strong> Option to analyze data without uploading</li>
+                </ul>
+
+                <div class="info-box warning">
+                    <h4>⚠️ Important: Genetic Privacy</h4>
+                    <p>Genetic information can potentially identify you and your relatives. When upload capabilities become available, we will provide detailed information about risks and protections before you submit any genetic data.</p>
+                </div>
+
+                <!-- 8. Future Plans -->
+                <div class="section-header" id="future-plans">
+                    <h2>8. Future Upload Platform</h2>
+                </div>
+
+                <h3>8.1 Planned Privacy Features</h3>
+                <ul>
+                    <li><strong>Privacy by design:</strong> Data protection built into system architecture</li>
+                    <li><strong>Consent management:</strong> Granular control over data use</li>
+                    <li><strong>Pseudonymization:</strong> Genetic data separated from identifying information</li>
+                    <li><strong>Retention limits:</strong> Automatic deletion of genetic data after processing</li>
+                    <li><strong>Export capabilities:</strong> Download your results before deletion</li>
+                </ul>
+
+                <h3>8.2 Research Participation</h3>
+                <p>Future options for contributing to genetic archaeology research:</p>
+                <ul>
+                    <li><strong>Voluntary participation:</strong> Opt-in only for research contributions</li>
+                    <li><strong>Aggregate statistics only:</strong> No individual-level data shared</li>
+                    <li><strong>Withdrawal rights:</strong> Remove your contribution at any time</li>
+                    <li><strong>Transparency:</strong> Clear information about how data contributes to research</li>
+                </ul>
+
+                <!-- 9. Contact -->
+                <div class="section-header" id="contact">
+                    <h2>9. Contact Information</h2>
+                </div>
+
+                <div class="contact-info">
+                    <h3>Privacy Questions or Concerns?</h3>
+                    <p>If you have questions about this Privacy Policy or our data practices:</p>
+                    <p>
+                        <strong>Email:</strong> <a href="mailto:privacy@hiddenlineage.com">privacy@hiddenlineage.com</a><br>
+                        <strong>General Contact:</strong> <a href="mailto:research@hiddenlineage.com">research@hiddenlineage.com</a>
+                    </p>
+                    <p>We will respond to privacy inquiries within 72 hours.</p>
+                </div>
+
+                <!-- 10. Changes -->
+                <div class="section-header" id="changes">
+                    <h2>10. Changes to This Policy</h2>
+                </div>
+
+                <p>We may update this Privacy Policy as the Hidden Lineage project evolves. Significant changes will be communicated through:</p>
+                <ul>
+                    <li>Prominent notice on the website</li>
+                    <li>Email notification (if you've provided contact information)</li>
+                    <li>Updated "Last Modified" date at the top of this policy</li>
+                </ul>
+
+                <h3>10.1 Major Changes Planned</h3>
+                <p>We anticipate updating this policy when we:</p>
+                <ul>
+                    <li>Launch DNA upload capabilities (Phase 3)</li>
+                    <li>Implement new security measures</li>
+                    <li>Add new features or analysis options</li>
+                    <li>Change data retention or sharing practices</li>
+                </ul>
+
+                <div class="info-box">
+                    <h4>📢 Stay Informed</h4>
+                    <p>We recommend reviewing this Privacy Policy periodically. We will always provide clear notice before implementing any changes that affect how we handle genetic information.</p>
+                </div>
+
+                <hr style="margin: 40px 0; border: none; border-top: 2px solid #e9ecef;">
+
+                <p style="font-size: 0.9rem; color: #666; text-align: center;">
+                    This Privacy Policy reflects our commitment to protecting your privacy while advancing the science of genetic archaeology. 
+                    We believe transparency and user control are essential for responsible genetic research.
+                </p>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

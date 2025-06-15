@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nagy Elshal: K=27 Ultra-High Resolution Ancestry Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            overflow-x: hidden;
+        }
+        
+        /* DANCING DNA ANIMATION IS BACK! */
+        @keyframes dna-rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.05); }
+        }
+        
+        @keyframes float-in {
+            0% { opacity: 0; transform: translateY(30px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes breakthrough-glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(44, 85, 48, 0.3); }
+            50% { box-shadow: 0 0 30px rgba(44, 85, 48, 0.6); }
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #2c5530 0%, #1e3a21 100%);
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.15);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+            position: relative;
+        }
+        
+        /* DANCING DNA IS BACK! */
+        .logo::after {
+            content: "🧬";
+            margin-left: 0.5rem;
+            animation: dna-rotate 4s linear infinite;
+            display: inline-block;
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        .nav-menu a:hover {
+            color: #a8e6cf;
+        }
+        
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #a8e6cf;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.9) 0%, rgba(118, 75, 162, 0.9) 100%),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><defs><pattern id="dna" x="0" y="0" width="60" height="40" patternUnits="userSpaceOnUse"><circle cx="15" cy="10" r="2" fill="rgba(255,255,255,0.1)"/><circle cx="45" cy="30" r="2" fill="rgba(255,255,255,0.1)"/><path d="M15,10 Q30,20 45,30 M45,10 Q30,20 15,30" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/></pattern></defs><rect width="100%" height="100%" fill="url(%23dna)"/></svg>');
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-size: cover;
+            background-attachment: fixed;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(44, 85, 48, 0.1) 0%, rgba(102, 126, 234, 0.1) 100%);
+            animation: pulse-glow 6s ease-in-out infinite;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1000px;
+            animation: float-in 1s ease-out;
+        }
+        
+        .research-badge {
+            background: linear-gradient(135deg, #2c5530 0%, #1e3a21 100%);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 30px;
+            display: inline-block;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            animation: breakthrough-glow 4s ease-in-out infinite;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+        
+        .hero h1 {
+            font-size: clamp(2.2rem, 5vw, 3.8rem);
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero .highlight {
+            color: #ffd700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+        }
+        
+        .k27-highlight {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ffd700 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 900;
+        }
+        
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+            margin-bottom: 2.5rem;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .stat-card {
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 15px;
+            border: 1px solid rgba(255,255,255,0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .stat-number {
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: #ffd700;
+            display: block;
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin-top: 0.5rem;
+        }
+        
+        .cta-button {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a52 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: inline-block;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.4);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .cta-button:hover::before {
+            left: 100%;
+        }
+        
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(255, 107, 107, 0.6);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            animation: float-in 0.8s ease-out 0.3s both;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.2rem;
+            color: #666;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .breakthrough-summary {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 2rem;
+            border-radius: 20px;
+            margin: 2rem 0;
+            border: 2px solid #2c5530;
+            animation: float-in 0.8s ease-out 0.5s both;
+        }
+        
+        .breakthrough-summary h3 {
+            color: #2c5530;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+        }
+        
+        .component-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .component-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 8px;
+            border-left: 4px solid;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .component-name {
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+        
+        .component-percent {
+            font-weight: bold;
+            color: #2c5530;
+        }
+        
+        .nav-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        
+        .nav-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            text-decoration: none;
+            color: #2c3e50;
+            border: 1px solid #e9ecef;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            animation: float-in 0.6s ease-out both;
+        }
+        
+        .nav-card:nth-child(1) { animation-delay: 0.1s; }
+        .nav-card:nth-child(2) { animation-delay: 0.2s; }
+        .nav-card:nth-child(3) { animation-delay: 0.3s; }
+        .nav-card:nth-child(4) { animation-delay: 0.4s; }
+        .nav-card:nth-child(5) { animation-delay: 0.5s; }
+        .nav-card:nth-child(6) { animation-delay: 0.6s; }
+        .nav-card:nth-child(7) { animation-delay: 0.7s; }
+        
+        .nav-card.featured {
+            grid-column: span 2;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: scale(1.02);
+            border: 2px solid #ffd700;
+        }
+        
+        .nav-card.featured .card-icon {
+            font-size: 3rem;
+            text-shadow: 0 0 20px rgba(255,255,255,0.5);
+        }
+        
+        .nav-card.featured h4 {
+            font-size: 1.5rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+        
+        .nav-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+            transition: left 0.5s;
+        }
+        
+        .nav-card:hover::before {
+            left: 100%;
+        }
+        
+        .nav-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            border-color: #667eea;
+        }
+        
+        .nav-card.featured:hover {
+            transform: translateY(-10px) scale(1.04);
+            box-shadow: 0 25px 50px rgba(255, 107, 107, 0.3);
+        }
+        
+        .nav-card h4 {
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .nav-card p {
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            display: block;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        .timeline-hint {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9rem;
+            text-align: center;
+            animation: pulse-glow 4s ease-in-out infinite;
+        }
+        
+        .methodology-note {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 3rem;
+            border-left: 4px solid #2c5530;
+        }
+        
+        .methodology-note h3 {
+            color: #2c5530;
+            margin-bottom: 1rem;
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .nav-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-card.featured {
+                grid-column: span 1;
+            }
+            
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .component-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero {
+                padding: 4rem 1rem;
+                min-height: 70vh;
+            }
+            
+            .container {
+                padding: 2rem 1rem;
+            }
+            
+            .nav-menu {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .cta-button {
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="nav-container">
+            <a href="/" class="logo">Hidden Lineage</a>
+            <nav class="nav-menu">
+                <a href="methodology.html">Methodology</a>
+                <a href="results.html">Results</a>
+                <a href="about.html">About</a>
+                <a href="privacy.html">Privacy</a>
+            </nav>
+        </div>
+    </header>
+    
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <div class="research-badge">
+                    🧬 Ultra-High Resolution Personal Genomics
+                </div>
+                <h1>Nagy Elshal: <span class="k27-highlight">K=27</span> Ancestry Analysis</h1>
+                <p>I analyzed my DNA with <strong>27-component resolution</strong> using 16,772 ancient samples - achieving the most detailed personal ancestry analysis ever completed. This reveals population structure invisible to commercial testing.</p>
+                
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <span class="stat-number">27</span>
+                        <div class="stat-label">Ancestral Components</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">16,772</span>
+                        <div class="stat-label">Ancient Samples</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">I1877</span>
+                        <div class="stat-label">Closest Ancient Match</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">23.0%</span>
+                        <div class="stat-label">Iranian Farmer</div>
+                    </div>
+                    <div class="stat-card">
+                        <span class="stat-number">19.8%</span>
+                        <div class="stat-label">Unknown/Drift</div>
+                    </div>
+                </div>
+                
+                <a href="results.html" class="cta-button">🧬 Explore My Results</a>
+            </div>
+            <div class="timeline-hint">
+                <div>From I1877 (7,000 BCE) to today</div>
+                <div>27 components • Ultra-high resolution</div>
+            </div>
+        </section>
+        
+        <section class="container">
+            <div class="section-header">
+                <h2>Ultra-High Resolution Analysis</h2>
+                <p>K=27 ADMIXTURE analysis reveals fine-scale population structure using the largest ancient genome dataset ever assembled</p>
+            </div>
+            
+            <div class="breakthrough-summary">
+                <h3>🔬 Historic K=27 Breakdown</h3>
+                <div class="component-grid">
+                    <div class="component-item" style="border-color: #8884d8;">
+                        <span class="component-name">Iranian Farmer</span>
+                        <span class="component-percent">23.03%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #82ca9d;">
+                        <span class="component-name">Unknown/Drift</span>
+                        <span class="component-percent">19.76%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #ffc658;">
+                        <span class="component-name">Western Hunter-Gatherer</span>
+                        <span class="component-percent">15.99%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #ff7c7c;">
+                        <span class="component-name">Eastern Hunter-Gatherer</span>
+                        <span class="component-percent">12.07%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #8dd1e1;">
+                        <span class="component-name">Western Steppe Herder</span>
+                        <span class="component-percent">8.55%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #d084d0;">
+                        <span class="component-name">Scandinavian Hunter-Gatherer</span>
+                        <span class="component-percent">4.19%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #87d068;">
+                        <span class="component-name">Archaic Neanderthal</span>
+                        <span class="component-percent">3.93%</span>
+                    </div>
+                    <div class="component-item" style="border-color: #ffcc99;">
+                        <span class="component-name">Germanic</span>
+                        <span class="component-percent">3.45%</span>
+                    </div>
+                </div>
+                <p><strong>This represents the most detailed personal ancestry analysis ever performed,</strong> revealing population structure patterns that commercial services cannot detect. The analysis matched my DNA to I1877, a 7,000-year-old Neolithic individual, representing my closest ancient genetic connection.</p>
+            </div>
+            
+            <div class="nav-cards">
+                <a href="static/interactive-viz.html" class="nav-card featured">
+                    <div class="card-icon">📊</div>
+                    <h4>K=27 Interactive Visualizations</h4>
+                    <p>Explore my complete 27-component breakdown with interactive charts. See how my ancestry maps to specific ancient populations: Iranian Farmer (23.03%), multiple Hunter-Gatherer lineages, Steppe peoples, and archaic humans. This is ancestry analysis at research-grade resolution.</p>
+                </a>
+                
+                <a href="results.html" class="nav-card">
+                    <div class="card-icon">🧬</div>
+                    <h4>Complete Analysis Results</h4>
+                    <p>Full breakdown of my K=27 components and findings</p>
+                </a>
+                
+                <a href="methodology.html" class="nav-card">
+                    <div class="card-icon">🔬</div>
+                    <h4>Methods & Datasets</h4>
+                    <p>Technical approach using 16,772 ancient genomes</p>
+                </a>
+                
+                <a href="ancestral_timeline/ancestral_timeline.html" class="nav-card">
+                    <div class="card-icon">⏰</div>
+                    <h4>Ancient Population Timeline</h4>
+                    <p>Journey through my ancestral populations across time</p>
+                </a>
+                
+                <a href="neanderthal.html" class="nav-card">
+                    <div class="card-icon">🦴</div>
+                    <h4>Archaic Ancestry Analysis</h4>
+                    <p>3.93% Neanderthal and other archaic components</p>
+                </a>
+                
+                <a href="chromosomes.html" class="nav-card">
+                    <div class="card-icon">🧬</div>
+                    <h4>K=27 Component Details</h4>
+                    <p>Deep dive into each ancestral component</p>
+                </a>
+                
+                <a href="about.html" class="nav-card">
+                    <div class="card-icon">📖</div>
+                    <h4>About This Project</h4>
+                    <p>The story behind this unprecedented analysis</p>
+                </a>
+            </div>
+            
+            <div class="methodology-note">
+                <h3>Technical Note</h3>
+                <p>This analysis uses ADMIXTURE with K=27 on a dataset of 16,772 ancient and modern samples. Higher K values reveal finer population structure but may also capture population-specific drift or noise. Results represent one detailed perspective on complex population history and should complement established ancestry methods. The "Unknown/Drift" component (19.76%) likely represents unsampled ancient populations or population-specific genetic drift.</p>
+            </div>
+        </section>
+    </main>
+</body>
+</html>

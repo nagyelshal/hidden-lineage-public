@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#667eea">
+    <title>Ancestral Timeline - Hidden Lineage</title>
+    
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-9FZPJPTWYK"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-9FZPJPTWYK');
+    </script>
+    
+    <!-- External CSS -->
+    <link rel="stylesheet" href="css/timeline-styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-bar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🧬 Hidden Lineage</a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="results.html" class="nav-link">Results</a>
+                <a href="ancestral_timeline.html" class="nav-link active">Timeline</a>
+                <a href="methodology.html" class="nav-link">Methodology</a>
+                <a href="compare_methods.html" class="nav-link">Compare Methods</a>
+                <a href="faq.html" class="nav-link">FAQ</a>
+                <a href="roadmap.html" class="nav-link">Roadmap</a>
+            </div>
+            <div class="mode-toggle">
+                <span>🔍 Discovery</span>
+                <div class="toggle-switch" onclick="toggleMode()">
+                    <div class="toggle-slider"></div>
+                </div>
+                <span>🧪 Scientific</span>
+                <div style="font-size: 0.7rem; color: #666; margin-left: 10px; font-style: italic;">
+                    Toggle for technical details
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section with I1877 Image -->
+    <section class="hero">
+        <div class="container">
+            <h1 class="hero-title">Ancestral Timeline</h1>
+            <p class="hero-subtitle">Journey through 45,000 years of human history and discover your ancient connections</p>
+            
+            <!-- I1877 Hero Image -->
+            <div class="hero-image">
+                <img src="images/i1877-reconstruction.jpg" 
+                     alt="Artistic reconstruction of I1877, a Neolithic farmer from 6,500 BCE who shows the closest genetic match to the analyzed sample" 
+                     class="hero-portrait"
+                     onerror="this.style.display='none'">
+                <p class="hero-caption">
+                    I1877 - Your closest ancient genetic match (6,500 BCE)
+                </p>
+                <p class="hero-disclaimer">
+                    Artistic reconstruction based on archaeological context, not verified likeness
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <div class="container">
+            <!-- Timeline Controls -->
+            <section class="timeline-controls">
+                <h3>Explore Archaeological Periods</h3>
+                <p>Click on any period to explore the ancient populations that contribute to modern ancestry</p>
+                
+                <div class="period-tabs">
+                    <button class="period-tab active" onclick="showPeriod('paleolithic')">Paleolithic</button>
+                    <button class="period-tab" onclick="showPeriod('neolithic')">Neolithic</button>
+                    <button class="period-tab" onclick="showPeriod('bronze-age')">Bronze Age</button>
+                    <button class="period-tab" onclick="showPeriod('iron-age')">Iron Age</button>
+                    <button class="period-tab" onclick="showPeriod('historical')">Historical</button>
+                </div>
+            </section>
+
+            <!-- Main Timeline -->
+            <section class="timeline-section">
+                <div class="timeline-container">
+                    <!-- Timeline Scale with Period Markers -->
+                    <div class="timeline-scale">
+                        <div class="scale-labels">
+                            <span>45,000 BCE</span>
+                            <span>10,000 BCE</span>
+                            <span>3,000 BCE</span>
+                            <span>1,200 BCE</span>
+                            <span>Present</span>
+                        </div>
+                        <!-- Period marker icons -->
+                        <div class="timeline-markers">
+                            <div class="marker" style="left: 2%;">🦴</div>
+                            <div class="marker" style="left: 25%;">🌾</div>
+                            <div class="marker" style="left: 50%;">⚔️</div>
+                            <div class="marker" style="left: 75%;">⚒️</div>
+                            <div class="marker" style="left: 95%;">📜</div>
+                        </div>
+                    </div>
+
+                    <!-- Load Period Content -->
+                    <div id="timeline-content">
+                        <!-- Content loaded from separate files -->
+                    </div>
+
+                    <!-- Timeline Legend -->
+                    <div class="timeline-legend">
+                        <div class="legend-title">Connection Strength to Analyzed Sample</div>
+                        <div class="legend-items">
+                            <div class="legend-item">
+                                <div class="legend-color high"></div>
+                                <span>High Connection (>20% component or closest match)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color medium"></div>
+                                <span>Medium Connection (5-20% component)</span>
+                            </div>
+                            <div class="legend-item">
+                                <div class="legend-color low"></div>
+                                <span>Low Connection (<5% component or distant)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Summary Section -->
+            <section class="timeline-controls summary-section">
+                <div class="dna-icon">🧬</div>
+                <h3>Your Ancestral Journey</h3>
+                <p>
+                    This timeline shows how different ancient populations contributed to modern genetic ancestry. The strongest connections are to <strong>Neolithic farmers from Anatolia</strong> and <strong>Iron Age populations from Armenia</strong>, with additional contributions from Paleolithic hunter-gatherers and Bronze Age pastoralists.
+                </p>
+                <div class="disclaimer-box">
+                    <p>
+                        🧬 <strong>Remember:</strong> These connections represent population-level genetic similarities across archaeological time scales, not direct genealogical descent from specific individuals or tribes.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- External JavaScript -->
+    <script src="js/timeline-periods.js"></script>
+    <script src="js/timeline-functions.js"></script>
+</body>
+</html>
